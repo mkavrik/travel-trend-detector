@@ -1,0 +1,32 @@
+# {{ dest.name_cs }} ({{ dest.country }})
+
+> {{ dest.trend_emoji }} **{{ dest.trend_classification }}** | Opportunity Score: **{{ dest.opportunity_score }}**
+
+| Metrika | Hodnota |
+|---------|---------|
+| Trend Score | {{ dest.trend_score }} |
+| Content Gap Score | {{ dest.content_gap_score }} |
+| Opportunity Score | {{ dest.opportunity_score }} |
+| Region | {{ dest.region }} |
+| Typ aktivity | {{ dest.activity_type }} |
+| Nejlepší sezóna | {{ dest.season }} |
+
+## Proč je to trend?
+
+{{ dest.trend_classification }} — tato destinace {{ "se nově objevila ve vyhledávání" if dest.trend_classification == "Breakout" else "zaznamenala meziroční nárůst zájmu" if dest.trend_classification == "Accelerating" else "má sezónní peak srovnatelný s minulými roky" if dest.trend_classification == "Seasonal Peak" else "zaznamenala pokles zájmu oproti loňsku" }}.
+
+## Jak je to pokryté obsahem?
+
+{% if dest.content_gap_assessment -%}
+{{ dest.content_gap_assessment }}
+{% else -%}
+Content Gap Score: {{ dest.content_gap_score }}/100
+{% endif %}
+
+## Verdikt
+
+{{ dest.verdict }}
+
+---
+
+*Report: [{{ week }}-{{ market_code }}](../README.md)*

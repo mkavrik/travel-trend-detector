@@ -1,0 +1,44 @@
+[
+  {
+    "hashtag": "dovolena",
+    "posts_last_4_weeks": 24,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 2400.0,
+    "total_posts": 24
+  },
+  {
+    "hashtag": "cestovani",
+    "posts_last_4_weeks": 27,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 2700.0,
+    "total_posts": 27
+  },
+  {
+    "hashtag": "vylet",
+    "posts_last_4_weeks": 27,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 2700.0,
+    "total_posts": 27
+  },
+  {
+    "hashtag": "cestujeme",
+    "posts_last_4_weeks": 30,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 3000.0,
+    "total_posts": 30
+  },
+  {
+    "hashtag": "kamnavylet",
+    "posts_last_4_weeks": 21,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 2100.0,
+    "total_posts": 21
+  },
+  {
+    "hashtag": "travel",
+    "posts_last_4_weeks": 26,
+    "posts_previous_4_weeks": 0,
+    "velocity_change_pct": 2600.0,
+    "total_posts": 27
+  }
+]

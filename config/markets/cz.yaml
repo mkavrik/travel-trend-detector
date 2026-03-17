@@ -1,0 +1,62 @@
+market:
+  code: "CZ"
+  language: "cs"
+  country_name: "Česká republika"
+  google_trends_geo: "CZ"
+  timezone: "Europe/Prague"
+
+seed_queries:
+  general:
+    - "dovolená 2026"
+    - "kam na dovolenou"
+    - "nejlepší destinace léto"
+    - "kam na výlet zahraničí"
+    - "levná dovolená"
+  active:
+    - "treking zahraničí"
+    - "hiking evropa"
+    - "cyklo dovolená zahraničí"
+    - "ferraty"
+    - "via ferrata"
+  seasonal:
+    - "lyžování alpy"
+    - "letní dovolená moře"
+    - "vánoční trhy evropa"
+    - "podzimní výlet"
+  specific_control:
+    - "dolomity"
+    - "albánie dovolená"
+    - "gruzie cestování"
+    - "island"
+
+instagram_hashtags:
+  generic:
+    - "dovolena"
+    - "cestovani"
+    - "vylet"
+    - "cestujeme"
+    - "kamnavylet"
+    - "travel"
+  destination_template: "{destination_cs}"
+
+google_search_templates:
+  - "{destination} dovolená průvodce"
+  - "{destination} turistika blog"
+  - "{destination} cestopis"
+  - "{destination} tipy na výlet"
+
+scoring:
+  trend_weights:
+    google_trends: 0.50
+    instagram_velocity: 0.25
+    twitter_velocity: 0.15
+    cross_platform_bonus: 0.10
+  content_gap_weights:
+    search_quality: 0.40
+    freshness: 0.30
+    language_quality: 0.20
+    social_coverage: 0.10
+  time_windows:
+    short_term_weeks: 4
+    medium_term_months: 12
+    long_term_years: 3

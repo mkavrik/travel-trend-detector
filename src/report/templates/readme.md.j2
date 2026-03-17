@@ -1,0 +1,23 @@
+# Travel Trend Report — {{ week }} / {{ market_code }}
+
+> Generováno: {{ generated_at }}
+
+## Top 5 příležitostí
+
+| # | Destinace | Trend Score | Content Gap | Opportunity | Trend |
+|---|-----------|-------------|-------------|-------------|-------|
+{% for dest in top_5 -%}
+| {{ loop.index }} | {{ dest.name_cs }} ({{ dest.country }}) | {{ dest.trend_score }} | {{ dest.content_gap_score }} | **{{ dest.opportunity_score }}** | {{ dest.trend_emoji }} {{ dest.trend_classification }} |
+{% endfor %}
+
+## Všechny detekované destinace
+
+| Destinace | Opportunity | Trend | Content Gap |
+|-----------|-------------|-------|-------------|
+{% for dest in destinations -%}
+| [{{ dest.name_cs }}](destinations/{{ dest.name | lower | replace(" ", "-") }}.md) | {{ dest.opportunity_score }} | {{ dest.trend_emoji }} {{ dest.trend_classification }} | {{ dest.content_gap_score }} |
+{% endfor %}
+
+---
+
+*Metodologie: [methodology.md](methodology.md)*

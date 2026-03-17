@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68.0", "setuptools-scm>=8.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "travel-trend-detector"
+version = "0.1.0"
+description = "Detect trending travel destinations and identify content gap opportunities"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "python-dotenv>=1.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+    "anthropic>=0.40",
+    "click>=8.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[project.scripts]
+ttd = "src.main:cli"
+
+[tool.setuptools.packages.find]
+include = ["src*"]

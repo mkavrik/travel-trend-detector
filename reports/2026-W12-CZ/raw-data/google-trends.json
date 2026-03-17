@@ -1,0 +1,3626 @@
+[
+  {
+    "query": "dovolená 2026",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 6
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 7
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 11
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 8
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 16
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 10
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 16
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 25
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 26
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 17
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 23
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 25
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 25
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 25
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 24
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 32
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 29
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 34
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 33
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 29
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 41
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 21
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 39
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 31
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 56
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 52
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 100
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 97
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 93
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 96
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 96
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 90
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 84
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 70
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 83
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 66
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 57
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 55
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "dovolena",
+        "value": "Breakout"
+      },
+      {
+        "query": "egypt dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "dovolená u moře",
+        "value": "Breakout"
+      },
+      {
+        "query": "řecko dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "turecko dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "invia",
+        "value": "Breakout"
+      },
+      {
+        "query": "invia dovolená 2026",
+        "value": "Breakout"
+      },
+      {
+        "query": "dovolená bulharsko",
+        "value": "Breakout"
+      },
+      {
+        "query": "letenky",
+        "value": "Breakout"
+      },
+      {
+        "query": "dovolená omán",
+        "value": "Breakout"
+      },
+      {
+        "query": "fischer",
+        "value": "Breakout"
+      },
+      {
+        "query": "chorvatsko dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "otcovská dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "otcovská dovolená 2026",
+        "value": "Breakout"
+      },
+      {
+        "query": "zanzibar dovolená",
+        "value": "Breakout"
+      },
+      {
+        "query": "dovolená last minute",
+        "value": "Breakout"
+      },
+      {
+        "query": "sardinie dovolená",
+        "value": "Breakout"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "dovolena",
+        "value": "100"
+      },
+      {
+        "query": "egypt dovolená",
+        "value": "76"
+      },
+      {
+        "query": "dovolená u moře",
+        "value": "66"
+      },
+      {
+        "query": "řecko dovolená",
+        "value": "66"
+      },
+      {
+        "query": "turecko dovolená",
+        "value": "61"
+      },
+      {
+        "query": "čedok",
+        "value": "49"
+      },
+      {
+        "query": "invia",
+        "value": "37"
+      },
+      {
+        "query": "invia dovolená 2026",
+        "value": "36"
+      },
+      {
+        "query": "dovolená bulharsko",
+        "value": "34"
+      },
+      {
+        "query": "letenky",
+        "value": "34"
+      },
+      {
+        "query": "bulharsko",
+        "value": "32"
+      },
+      {
+        "query": "španělsko dovolená",
+        "value": "30"
+      },
+      {
+        "query": "dovolená omán",
+        "value": "30"
+      },
+      {
+        "query": "fischer",
+        "value": "29"
+      },
+      {
+        "query": "chorvatsko dovolená",
+        "value": "28"
+      },
+      {
+        "query": "otcovská dovolená",
+        "value": "28"
+      },
+      {
+        "query": "otcovská dovolená 2026",
+        "value": "27"
+      },
+      {
+        "query": "zanzibar dovolená",
+        "value": "24"
+      },
+      {
+        "query": "dovolená last minute",
+        "value": "24"
+      },
+      {
+        "query": "sardinie dovolená",
+        "value": "24"
+      }
+    ]
+  },
+  {
+    "query": "kam na dovolenou",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 44
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 40
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 38
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 32
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 40
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 38
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 54
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 50
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 62
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 49
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 61
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 57
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 72
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 84
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 82
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 97
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 86
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 89
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 69
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 83
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 74
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 73
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 54
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 66
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 47
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 66
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 40
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 56
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 45
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 42
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 54
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 42
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 29
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 48
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 35
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 43
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 45
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 38
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 74
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 65
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 69
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 72
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 83
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 89
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 69
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 61
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 55
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 63
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 66
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 56
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 57
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "kam letos na dovolenou",
+        "value": "Breakout"
+      },
+      {
+        "query": "kam na dovolenou v lednu",
+        "value": "+40%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "kam na dovolenou k moři",
+        "value": "100"
+      },
+      {
+        "query": "kam jet na dovolenou",
+        "value": "87"
+      },
+      {
+        "query": "kam na dovolenou s dětmi",
+        "value": "73"
+      },
+      {
+        "query": "kam na dovolenou v říjnu",
+        "value": "48"
+      },
+      {
+        "query": "kam v říjnu na dovolenou",
+        "value": "48"
+      },
+      {
+        "query": "letenky",
+        "value": "39"
+      },
+      {
+        "query": "kam v listopadu na dovolenou",
+        "value": "32"
+      },
+      {
+        "query": "kam na dovolenou v lednu",
+        "value": "28"
+      },
+      {
+        "query": "last minute",
+        "value": "25"
+      },
+      {
+        "query": "kam v září na dovolenou",
+        "value": "22"
+      },
+      {
+        "query": "kam na dovolenou v září",
+        "value": "21"
+      },
+      {
+        "query": "kapverdy",
+        "value": "20"
+      },
+      {
+        "query": "kam na dovolenou v únoru",
+        "value": "19"
+      },
+      {
+        "query": "kam na dovolenou v rijnu",
+        "value": "19"
+      },
+      {
+        "query": "kam na dovolenou v dubnu",
+        "value": "18"
+      },
+      {
+        "query": "kam v česku na dovolenou",
+        "value": "18"
+      },
+      {
+        "query": "kam s dětmi na dovolenou v čr",
+        "value": "16"
+      },
+      {
+        "query": "kam v zimě na dovolenou",
+        "value": "16"
+      },
+      {
+        "query": "kam na dovolenou v polsku",
+        "value": "15"
+      },
+      {
+        "query": "zanzibar",
+        "value": "15"
+      },
+      {
+        "query": "kam letos na dovolenou",
+        "value": "5"
+      }
+    ]
+  },
+  {
+    "query": "nejlepší destinace léto",
+    "timeline": [],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "kam na výlet zahraničí",
+    "timeline": [],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "levná dovolená",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 42
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 74
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 39
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 71
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 82
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 56
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 80
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 85
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 96
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 55
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 72
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 65
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 87
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 50
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 49
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 43
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 45
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 62
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 47
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 84
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 40
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 92
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 51
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 75
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 41
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 83
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 44
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 55
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 31
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 38
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 30
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "levná dovolená u moře 2023",
+        "value": "Breakout"
+      },
+      {
+        "query": "levná dovolená chorvatsko",
+        "value": "+40%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "levná dovolená u moře",
+        "value": "100"
+      },
+      {
+        "query": "levná dovolená s dětmi",
+        "value": "20"
+      },
+      {
+        "query": "levná dovolená chorvatsko",
+        "value": "16"
+      },
+      {
+        "query": "letenky",
+        "value": "12"
+      },
+      {
+        "query": "levná dovolená letecky",
+        "value": "12"
+      },
+      {
+        "query": "levná dovolená u moře all inclusive",
+        "value": "11"
+      },
+      {
+        "query": "levná dovolená itálie",
+        "value": "7"
+      },
+      {
+        "query": "booking",
+        "value": "3"
+      },
+      {
+        "query": "levná dovolená u moře 2023",
+        "value": "2"
+      }
+    ]
+  },
+  {
+    "query": "treking zahraničí",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 100
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 0
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "hiking evropa",
+    "timeline": [],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "cyklo dovolená zahraničí",
+    "timeline": [],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "ferraty",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 21
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 23
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 23
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 23
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 35
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 31
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 41
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 67
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 39
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 26
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 55
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 52
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 52
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 52
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 71
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 82
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 69
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 96
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 79
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 81
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 100
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 86
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 89
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 61
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 48
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 62
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 36
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 31
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 27
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 22
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 26
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 23
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 19
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 15
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 20
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 18
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 10
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 11
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 27
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 22
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 23
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 21
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 24
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 21
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 14
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 17
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 17
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 16
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 15
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 24
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 22
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "ferraty hluboká",
+        "value": "+120%"
+      },
+      {
+        "query": "rukavice na ferraty",
+        "value": "+50%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "ferraty čr",
+        "value": "100"
+      },
+      {
+        "query": "ferraty rakousko",
+        "value": "94"
+      },
+      {
+        "query": "via ferraty",
+        "value": "70"
+      },
+      {
+        "query": "boty na ferraty",
+        "value": "55"
+      },
+      {
+        "query": "vybavení na ferraty",
+        "value": "40"
+      },
+      {
+        "query": "ferraty v čr",
+        "value": "33"
+      },
+      {
+        "query": "rukavice na ferraty",
+        "value": "31"
+      },
+      {
+        "query": "ferraty vír",
+        "value": "23"
+      },
+      {
+        "query": "ferraty děčín",
+        "value": "22"
+      },
+      {
+        "query": "ferraty hluboká",
+        "value": "21"
+      },
+      {
+        "query": "ferraty slovinsko",
+        "value": "19"
+      },
+      {
+        "query": "ferraty semily",
+        "value": "19"
+      }
+    ]
+  },
+  {
+    "query": "via ferrata",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 20
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 20
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 45
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 37
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 33
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 44
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 45
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 39
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 33
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 49
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 45
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 56
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 42
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 81
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 94
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 87
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 93
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 95
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 86
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 91
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 100
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 97
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 53
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 48
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 50
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 35
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 35
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 33
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 30
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 28
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 24
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 19
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 26
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 25
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 28
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 28
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 32
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 22
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 30
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 21
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 25
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 15
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 23
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 28
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "via ferrata decin",
+        "value": "+350%"
+      },
+      {
+        "query": "via ferrata rio sallagoni",
+        "value": "+200%"
+      },
+      {
+        "query": "via ferrata rakousko",
+        "value": "+130%"
+      },
+      {
+        "query": "via ferrata fausto susatti",
+        "value": "+90%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "via ferrata set",
+        "value": "100"
+      },
+      {
+        "query": "ferraty",
+        "value": "94"
+      },
+      {
+        "query": "via ferrata decin",
+        "value": "46"
+      },
+      {
+        "query": "via ferrata rakousko",
+        "value": "42"
+      },
+      {
+        "query": "via ferrata austria",
+        "value": "42"
+      },
+      {
+        "query": "via ferrata děčín",
+        "value": "38"
+      },
+      {
+        "query": "via ferrata vodní brána",
+        "value": "33"
+      },
+      {
+        "query": "via ferrata vír",
+        "value": "28"
+      },
+      {
+        "query": "via ferrata skalka",
+        "value": "23"
+      },
+      {
+        "query": "booking",
+        "value": "13"
+      },
+      {
+        "query": "donnerkogel via ferrata",
+        "value": "11"
+      },
+      {
+        "query": "via ferrata rio sallagoni",
+        "value": "11"
+      },
+      {
+        "query": "via ferrata bechyně",
+        "value": "9"
+      },
+      {
+        "query": "daubenhorn via ferrata",
+        "value": "7"
+      },
+      {
+        "query": "via ferrata fausto susatti",
+        "value": "7"
+      }
+    ]
+  },
+  {
+    "query": "lyžování alpy",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 100
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 88
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 0
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "letní dovolená moře",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 70
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 100
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 0
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "vánoční trhy evropa",
+    "timeline": [],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "podzimní výlet",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 100
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 0
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "dolomity",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 39
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 36
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 28
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 21
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 35
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 36
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 25
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 41
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 21
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 36
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 39
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 51
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 50
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 56
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 67
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 97
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 90
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 94
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 91
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 75
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 70
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 59
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 65
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 52
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 54
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 53
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 34
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 42
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 38
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 34
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 30
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 27
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 26
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 31
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 22
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 24
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 17
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 24
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 35
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 31
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 42
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 46
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 37
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 48
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 43
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 48
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 45
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 40
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 35
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 36
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 30
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 38
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "airbnb",
+        "value": "Breakout"
+      },
+      {
+        "query": "alpe di siusi",
+        "value": "Breakout"
+      },
+      {
+        "query": "seceda",
+        "value": "+200%"
+      },
+      {
+        "query": "dolomity brenta",
+        "value": "+110%"
+      },
+      {
+        "query": "seceda dolomity",
+        "value": "+90%"
+      },
+      {
+        "query": "lago di braies",
+        "value": "+90%"
+      },
+      {
+        "query": "tre cime di lavaredo",
+        "value": "+60%"
+      },
+      {
+        "query": "lago di sorapis",
+        "value": "+60%"
+      },
+      {
+        "query": "alpy",
+        "value": "+50%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "počasí dolomity",
+        "value": "100"
+      },
+      {
+        "query": "pocasi dolomity",
+        "value": "62"
+      },
+      {
+        "query": "dolomity mapa",
+        "value": "45"
+      },
+      {
+        "query": "dolomity hotel",
+        "value": "34"
+      },
+      {
+        "query": "alpy",
+        "value": "32"
+      },
+      {
+        "query": "dolomites",
+        "value": "32"
+      },
+      {
+        "query": "dolomity superski",
+        "value": "31"
+      },
+      {
+        "query": "italské dolomity",
+        "value": "23"
+      },
+      {
+        "query": "seceda",
+        "value": "21"
+      },
+      {
+        "query": "seceda dolomity",
+        "value": "20"
+      },
+      {
+        "query": "cortina",
+        "value": "20"
+      },
+      {
+        "query": "tre cime",
+        "value": "19"
+      },
+      {
+        "query": "dolomit",
+        "value": "16"
+      },
+      {
+        "query": "lago di braies",
+        "value": "13"
+      },
+      {
+        "query": "dolomity brenta",
+        "value": "11"
+      },
+      {
+        "query": "airbnb",
+        "value": "7"
+      },
+      {
+        "query": "alpe di siusi",
+        "value": "6"
+      },
+      {
+        "query": "lago di sorapis",
+        "value": "6"
+      },
+      {
+        "query": "tre cime di lavaredo",
+        "value": "3"
+      }
+    ]
+  },
+  {
+    "query": "albánie dovolená",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 30
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 45
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 21
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 23
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 24
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 38
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 27
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 52
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 57
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 45
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 44
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 47
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 65
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 59
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 82
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 64
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 68
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 66
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 63
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 50
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 47
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 24
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 34
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 22
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 16
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 17
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 24
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 33
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 19
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 33
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 31
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 24
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 20
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 13
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 20
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 27
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": [
+      {
+        "query": "albánie dovolená zkušenosti",
+        "value": "100"
+      }
+    ]
+  },
+  {
+    "query": "gruzie cestování",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 0
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 0
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 0
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 100
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 0
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 0
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 0
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 0
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 0
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 0
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 4
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 0
+      }
+    ],
+    "rising_queries": [],
+    "top_queries": []
+  },
+  {
+    "query": "island",
+    "timeline": [
+      {
+        "date": "Mar 16 – 22, 2025",
+        "value": 28
+      },
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 24
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 29
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 24
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 25
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 24
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 24
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 25
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 27
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 30
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 28
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 30
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 30
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 35
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 35
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 37
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 37
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 39
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 32
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 35
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 31
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 32
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 33
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 34
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 47
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 100
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 84
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 71
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 82
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 71
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 72
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 58
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 82
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 68
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 37
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 36
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 33
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 30
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 30
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 29
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 38
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 38
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 34
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 36
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 35
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 38
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 43
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 37
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 37
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 37
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 31
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 28
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 27
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "finale love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "love island majda",
+        "value": "Breakout"
+      },
+      {
+        "query": "michelle love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "love island usa season 7 online",
+        "value": "Breakout"
+      },
+      {
+        "query": "klara love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "nicolas love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "kdy je finale love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "kdy bude finale love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "erika love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "miska love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "kdy zacina love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "love island 2025 online zdarma",
+        "value": "Breakout"
+      },
+      {
+        "query": "khadlaj island dreams",
+        "value": "Breakout"
+      },
+      {
+        "query": "kdy vychazi love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "kdo vyhral love island 2025",
+        "value": "Breakout"
+      },
+      {
+        "query": "patricie love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "adela love island",
+        "value": "Breakout"
+      },
+      {
+        "query": "love island 2025 účastníci",
+        "value": "+4,450%"
+      },
+      {
+        "query": "love island 2025",
+        "value": "+3,900%"
+      },
+      {
+        "query": "love island 2025 online",
+        "value": "+3,650%"
+      },
+      {
+        "query": "love island usa season 7",
+        "value": "+3,100%"
+      },
+      {
+        "query": "love island 2025 kdy",
+        "value": "+3,000%"
+      },
+      {
+        "query": "love island cz 2025",
+        "value": "+2,900%"
+      },
+      {
+        "query": "karamelka love island",
+        "value": "+1,150%"
+      },
+      {
+        "query": "shelby love island",
+        "value": "+1,150%"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "love island",
+        "value": "100"
+      },
+      {
+        "query": "love island 2025",
+        "value": "21"
+      },
+      {
+        "query": "the island",
+        "value": "16"
+      },
+      {
+        "query": "dead island",
+        "value": "7"
+      },
+      {
+        "query": "tropical island",
+        "value": "6"
+      },
+      {
+        "query": "long island",
+        "value": "6"
+      },
+      {
+        "query": "stone island",
+        "value": "6"
+      },
+      {
+        "query": "dead island 2",
+        "value": "5"
+      },
+      {
+        "query": "love island usa",
+        "value": "5"
+      },
+      {
+        "query": "love island online",
+        "value": "4"
+      },
+      {
+        "query": "epstein",
+        "value": "4"
+      },
+      {
+        "query": "epstein island",
+        "value": "4"
+      },
+      {
+        "query": "shutter island",
+        "value": "3"
+      },
+      {
+        "query": "prison island",
+        "value": "3"
+      },
+      {
+        "query": "love island finale",
+        "value": "3"
+      },
+      {
+        "query": "love island cz",
+        "value": "3"
+      },
+      {
+        "query": "love island účastníci",
+        "value": "3"
+      },
+      {
+        "query": "love island 2025 kdy",
+        "value": "3"
+      },
+      {
+        "query": "nova love island",
+        "value": "3"
+      },
+      {
+        "query": "love island 2024",
+        "value": "2"
+      },
+      {
+        "query": "finale love island 2025",
+        "value": "2"
+      },
+      {
+        "query": "rhode island",
+        "value": "2"
+      },
+      {
+        "query": "island letenky",
+        "value": "2"
+      },
+      {
+        "query": "island počasí",
+        "value": "2"
+      },
+      {
+        "query": "coral island",
+        "value": "2"
+      }
+    ]
+  }
+]
