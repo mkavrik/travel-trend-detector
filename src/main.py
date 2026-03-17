@@ -10,9 +10,11 @@ from src.analysis.claude_analyzer import classify_destination, generate_verdict,
 from src.analysis.content_gap import score_content_gap
 from src.analysis.opportunity import Destination, calculate_opportunity, rank_destinations
 from src.analysis.trend_scorer import (
+    VolumeStatus,
     calculate_google_trends_score,
     calculate_instagram_score,
     calculate_trend_score,
+    check_search_volume,
     classify_trend,
 )
 from src.collectors.google_search import search_destination
@@ -80,20 +82,43 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool) -> N
         except Exception as e:
             logger.warning(f"Failed to classify '{rq.query}': {e}")
 
+    # Step 3b: Volume filter — fetch interest_over_time for each rising query
+    logger.info("Step 3b/5: Checking search volume for classified destinations...")
+    geo = market_config.google_trends_geo
+    filtered_destinations: dict[str, dict] = {}
+    excluded_zero = 0
+    flagged_low = 0
+
+    for norm_name, dest_data in seen_destinations.items():
+        info = dest_data["info"]
+        volume = check_search_volume(dest_data["query"], geo)
+
+        if volume.status == VolumeStatus.ZERO:
+            excluded_zero += 1
+            continue
+
+        dest_data["volume_check"] = volume
+        dest_data["timeline"] = volume.timeline
+        filtered_destinations[norm_name] = dest_data
+
+        if volume.status == VolumeStatus.LOW_VOLUME:
+            flagged_low += 1
+
+    logger.info(
+        f"Volume filter: {len(filtered_destinations)} kept, "
+        f"{excluded_zero} excluded (zero volume), "
+        f"{flagged_low} flagged as low_volume"
+    )
+
     # Step 4: Score and rank
     logger.info("Step 4/5: Scoring and ranking destinations...")
     destinations: list[Destination] = []
     all_search_results: dict[str, list[dict]] = {}
 
-    for norm_name, dest_data in seen_destinations.items():
+    for norm_name, dest_data in filtered_destinations.items():
         info = dest_data["info"]
-
-        # Find matching trend timeline (best effort)
-        timeline = []
-        for result in trend_data.results:
-            if info.destination_name_cs.lower() in result.query.lower() or info.destination_name.lower() in result.query.lower():
-                timeline = result.timeline
-                break
+        volume = dest_data["volume_check"]
+        timeline = dest_data["timeline"]
 
         # Google Trends score
         gt_score = calculate_google_trends_score(timeline) if timeline else 50.0
@@ -109,13 +134,21 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool) -> N
                     break
 
         trend_score = calculate_trend_score(gt_score, ig_score, has_cross_platform)
+
+        if volume.status == VolumeStatus.LOW_VOLUME:
+            logger.info(f"Applying low_volume penalty to '{info.destination_name_cs}': {trend_score} → {round(trend_score * 0.5, 1)}")
+            trend_score = round(trend_score * 0.5, 1)
+
         classification = classify_trend(timeline) if timeline else classify_trend([])
 
         # Content gap
-        search_results = search_destination(info.destination_name_cs, market_config)
-        all_search_results[info.destination_name_cs] = [asdict(r) for r in search_results]
-        logger.info(f"Google Search for '{info.destination_name_cs}': {len(search_results)} results")
-        gap = score_content_gap(search_results, info.destination_name_cs, claude_client)
+        search_data = search_destination(info.destination_name_cs, market_config)
+        all_search_results[info.destination_name_cs] = {
+            "total_results": search_data.total_results,
+            "organic": [asdict(r) for r in search_data.results],
+        }
+        logger.info(f"Google Search for '{info.destination_name_cs}': {len(search_data.results)} organic, {search_data.total_results:,} total")
+        gap = score_content_gap(search_data.results, info.destination_name_cs, claude_client, total_results=search_data.total_results)
 
         opportunity = calculate_opportunity(trend_score, gap.score)
 
@@ -144,6 +177,7 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool) -> N
             trend_classification=classification.label,
             trend_emoji=classification.emoji,
             content_gap_assessment=gap.assessment,
+            market_category=gap.market_category,
             verdict=verdict,
         ))
 

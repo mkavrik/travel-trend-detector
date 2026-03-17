@@ -29,6 +29,17 @@ def _extract_json(text: str) -> dict:
     raise ValueError(f"No valid JSON found in response: {text[:200]}")
 
 
+def classify_market_category(total_results: int) -> str:
+    if total_results < 5_000:
+        return "niche"
+    elif total_results < 50_000:
+        return "emerging"
+    elif total_results < 500_000:
+        return "established"
+    else:
+        return "mainstream"
+
+
 @dataclass
 class ContentGapScore:
     score: float
@@ -37,6 +48,8 @@ class ContentGapScore:
     language_score: float
     social_score: float
     assessment: str
+    market_category: str = ""
+    total_results: int = 0
     content_types_found: list[str] = field(default_factory=list)
     content_types_missing: list[str] = field(default_factory=list)
 
@@ -98,6 +111,7 @@ def score_content_gap(
     search_results: list[SearchResult],
     destination: str,
     claude_client: Anthropic | None = None,
+    total_results: int = 0,
 ) -> ContentGapScore:
     quality_score = _score_search_quality(search_results)
     freshness_score = _score_freshness(search_results)
@@ -156,6 +170,9 @@ Odpověz POUZE validním JSON:
         + social_score * weights["social"]
     )
 
+    market_category = classify_market_category(total_results)
+    logger.info(f"Market category for '{destination}': {market_category} (total_results={total_results:,})")
+
     return ContentGapScore(
         score=round(composite, 1),
         quality_score=quality_score,
@@ -163,6 +180,8 @@ Odpověz POUZE validním JSON:
         language_score=language_score,
         social_score=social_score,
         assessment=assessment,
+        market_category=market_category,
+        total_results=total_results,
         content_types_found=content_types_found,
         content_types_missing=content_types_missing,
     )

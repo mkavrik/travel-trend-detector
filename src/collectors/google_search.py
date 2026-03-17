@@ -25,6 +25,12 @@ class SearchResult:
     date: str | None
 
 
+@dataclass
+class DestinationSearchData:
+    results: list[SearchResult]
+    total_results: int
+
+
 def _serpapi_search(params: dict) -> dict:
     api_key = get_env("TTD_SERPAPI_KEY")
     params["api_key"] = api_key
@@ -43,8 +49,9 @@ def _serpapi_search(params: dict) -> dict:
     return {}
 
 
-def search_destination(destination: str, market_config: MarketConfig) -> list[SearchResult]:
+def search_destination(destination: str, market_config: MarketConfig) -> DestinationSearchData:
     all_results: list[SearchResult] = []
+    max_total_results = 0
 
     for template in market_config.google_search_templates:
         query = template.format(destination=destination)
@@ -61,6 +68,11 @@ def search_destination(destination: str, market_config: MarketConfig) -> list[Se
         logger.info(f"Searching Google for: {query}")
         data = cached_request(cache_key, lambda p=params: _serpapi_search(p))
 
+        total = data.get("search_information", {}).get("total_results", 0)
+        if total > max_total_results:
+            max_total_results = total
+        logger.info(f"  → total_results={total:,} for '{query}'")
+
         organic = data.get("organic_results", [])
         logger.info(f"  → {len(organic)} organic results for '{query}'")
 
@@ -73,5 +85,5 @@ def search_destination(destination: str, market_config: MarketConfig) -> list[Se
                 date=item.get("date"),
             ))
 
-    logger.info(f"Total search results for '{destination}': {len(all_results)}")
-    return all_results
+    logger.info(f"Total search results for '{destination}': {len(all_results)}, max total_results={max_total_results:,}")
+    return DestinationSearchData(results=all_results, total_results=max_total_results)

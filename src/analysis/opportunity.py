@@ -17,6 +17,7 @@ class Destination:
     trend_classification: str
     trend_emoji: str
     content_gap_assessment: str
+    market_category: str
     verdict: str
 
 

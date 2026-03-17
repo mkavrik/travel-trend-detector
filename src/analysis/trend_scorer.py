@@ -2,8 +2,9 @@ from __future__ import annotations
 
 import logging
 from dataclasses import dataclass
+from enum import Enum
 
-from src.collectors.google_trends import TrendData, TimelinePoint
+from src.collectors.google_trends import TrendData, TimelinePoint, fetch_interest_over_time
 from src.collectors.instagram import InstagramData
 
 logger = logging.getLogger(__name__)
@@ -12,6 +13,46 @@ logger = logging.getLogger(__name__)
 WEIGHT_GOOGLE_TRENDS = 0.60
 WEIGHT_INSTAGRAM = 0.30
 WEIGHT_CROSS_PLATFORM = 0.10
+
+LOW_VOLUME_THRESHOLD = 10
+LOW_VOLUME_PENALTY = 0.50
+
+
+class VolumeStatus(Enum):
+    OK = "ok"
+    LOW_VOLUME = "low_volume"
+    ZERO = "zero"
+
+
+@dataclass
+class VolumeCheck:
+    status: VolumeStatus
+    avg_last_4w: float
+    timeline: list[TimelinePoint]
+
+
+def check_search_volume(query: str, geo: str) -> VolumeCheck:
+    """Fetch interest_over_time for a rising query and check its absolute volume."""
+    timeline = fetch_interest_over_time(query, geo)
+    values = [p.value for p in timeline]
+
+    last_4w = values[-4:] if len(values) >= 4 else values
+    if not last_4w:
+        logger.info(f"Volume check '{query}': no data — marking as zero")
+        return VolumeCheck(status=VolumeStatus.ZERO, avg_last_4w=0.0, timeline=timeline)
+
+    avg = sum(last_4w) / len(last_4w)
+
+    if all(v == 0 for v in last_4w):
+        logger.info(f"Volume check '{query}': all zeros in last 4w — excluding")
+        return VolumeCheck(status=VolumeStatus.ZERO, avg_last_4w=0.0, timeline=timeline)
+
+    if avg < LOW_VOLUME_THRESHOLD:
+        logger.info(f"Volume check '{query}': avg={avg:.1f} < {LOW_VOLUME_THRESHOLD} — low_volume")
+        return VolumeCheck(status=VolumeStatus.LOW_VOLUME, avg_last_4w=avg, timeline=timeline)
+
+    logger.info(f"Volume check '{query}': avg={avg:.1f} — ok")
+    return VolumeCheck(status=VolumeStatus.OK, avg_last_4w=avg, timeline=timeline)
 
 
 @dataclass

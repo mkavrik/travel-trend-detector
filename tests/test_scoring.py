@@ -1,7 +1,12 @@
+from unittest.mock import patch
+
 from src.analysis.trend_scorer import (
     TrendClassification,
+    VolumeCheck,
+    VolumeStatus,
     calculate_google_trends_score,
     calculate_trend_score,
+    check_search_volume,
     classify_trend,
 )
 from src.collectors.google_trends import TimelinePoint
@@ -58,3 +63,35 @@ def test_calculate_trend_score_no_cross():
     )
     expected = 50.0 * 0.60
     assert score == round(expected, 1)
+
+
+@patch("src.analysis.trend_scorer.fetch_interest_over_time")
+def test_volume_check_ok(mock_fetch):
+    mock_fetch.return_value = _make_timeline([20, 25, 30, 35] + [40] * 8 + [50, 55, 60, 65])
+    result = check_search_volume("dolomity", "CZ")
+    assert result.status == VolumeStatus.OK
+    assert result.avg_last_4w == 57.5
+    assert len(result.timeline) == 16
+
+
+@patch("src.analysis.trend_scorer.fetch_interest_over_time")
+def test_volume_check_low(mock_fetch):
+    mock_fetch.return_value = _make_timeline([0] * 12 + [3, 5, 7, 8])
+    result = check_search_volume("obscure destination", "CZ")
+    assert result.status == VolumeStatus.LOW_VOLUME
+    assert result.avg_last_4w == 5.75
+
+
+@patch("src.analysis.trend_scorer.fetch_interest_over_time")
+def test_volume_check_zero(mock_fetch):
+    mock_fetch.return_value = _make_timeline([0] * 12 + [0, 0, 0, 0])
+    result = check_search_volume("nonexistent place", "CZ")
+    assert result.status == VolumeStatus.ZERO
+    assert result.avg_last_4w == 0.0
+
+
+@patch("src.analysis.trend_scorer.fetch_interest_over_time")
+def test_volume_check_empty_timeline(mock_fetch):
+    mock_fetch.return_value = []
+    result = check_search_volume("no data", "CZ")
+    assert result.status == VolumeStatus.ZERO
