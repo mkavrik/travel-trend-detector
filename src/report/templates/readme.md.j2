@@ -1,22 +1,42 @@
 # Travel Trend Report — {{ week }} / {{ market_code }}
 
-> Generováno: {{ generated_at }}
+> Generováno: {{ generated_at }} | Destinací celkem: {{ destinations | length }}
 
-## Top 5 příležitostí
+{% if both -%}
+## 🔥 Nejlepší příležitosti (trending + stabilní zájem)
 
-| # | Destinace | Trend Score | Content Gap | Opportunity | Trend |
-|---|-----------|-------------|-------------|-------------|-------|
-{% for dest in top_5 -%}
-| {{ loop.index }} | {{ dest.name_cs }} ({{ dest.country }}) | {{ dest.trend_score }} | {{ dest.content_gap_score }} | **{{ dest.opportunity_score }}** | {{ dest.trend_emoji }} {{ dest.trend_classification }} |
+Destinace, které jsou v top I rising queries současně — stabilní zájem + aktuálně roste.
+
+| # | Destinace | Typ | Trend Score | Content Gap | Opportunity | Rising | Popularity |
+|---|-----------|-----|-------------|-------------|-------------|--------|------------|
+{% for dest in both -%}
+| {{ loop.index }} | [{{ dest.name_cs }}](destinations/{{ dest.name | lower | replace(" ", "-") }}.md) | {{ dest.opportunity_type }} | {{ dest.trend_score }} | {{ dest.content_gap_score }} | **{{ dest.opportunity_score }}** | {{ dest.rising_value }} | {{ dest.popularity_score }} |
 {% endfor %}
+{% endif %}
 
-## Všechny detekované destinace
+{% if rising -%}
+## 🚀 Trending příležitosti
 
-| Destinace | Opportunity | Trend | Content Gap |
-|-----------|-------------|-------|-------------|
-{% for dest in destinations -%}
-| [{{ dest.name_cs }}](destinations/{{ dest.name | lower | replace(" ", "-") }}.md) | {{ dest.opportunity_score }} | {{ dest.trend_emoji }} {{ dest.trend_classification }} | {{ dest.content_gap_score }} |
+Nové trendy z rising queries — můžeš být první.
+
+| # | Destinace | Trend Score | Content Gap | Opportunity | Rising | Trend |
+|---|-----------|-------------|-------------|-------------|--------|-------|
+{% for dest in rising -%}
+| {{ loop.index }} | [{{ dest.name_cs }}](destinations/{{ dest.name | lower | replace(" ", "-") }}.md) | {{ dest.trend_score }} | {{ dest.content_gap_score }} | **{{ dest.opportunity_score }}** | {{ dest.rising_value }} | {{ dest.trend_emoji }} {{ dest.trend_classification }} |
 {% endfor %}
+{% endif %}
+
+{% if top -%}
+## 🏔️ Evergreen příležitosti
+
+Stabilně vysoký zájem z top queries — seřazeno podle Content Gap (kde chybí obsah).
+
+| # | Destinace | Popularity | Content Gap | Evergreen Opp. | Trh obsahu |
+|---|-----------|------------|-------------|----------------|------------|
+{% for dest in top -%}
+| {{ loop.index }} | [{{ dest.name_cs }}](destinations/{{ dest.name | lower | replace(" ", "-") }}.md) | {{ dest.popularity_score }} | {{ dest.content_gap_score }} | **{{ dest.evergreen_opportunity }}** | {{ dest.market_category }} |
+{% endfor %}
+{% endif %}
 
 ---
 

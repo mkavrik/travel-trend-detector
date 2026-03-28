@@ -7,7 +7,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
-from src.analysis.opportunity import Destination
+from src.analysis.opportunity import Destination, categorize_destinations
 from src.config import REPORTS_DIR
 
 logger = logging.getLogger(__name__)
@@ -39,13 +39,18 @@ def generate_report(
     env = _get_jinja_env()
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 
+    # Categorize destinations by source
+    both, rising, top = categorize_destinations(destinations)
+
     # README.md — executive summary
     readme_template = env.get_template("readme.md.j2")
     readme_content = readme_template.render(
         week=week,
         market_code=market_code,
         destinations=destinations,
-        top_5=destinations[:5],
+        both=both,
+        rising=rising,
+        top=top,
         generated_at=generated_at,
     )
     (report_dir / "README.md").write_text(readme_content, encoding="utf-8")

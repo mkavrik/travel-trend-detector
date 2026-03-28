@@ -130,7 +130,7 @@ def score_content_gap(
                 for i, r in enumerate(search_results[:10])
             )
             response = claude_client.messages.create(
-                model="claude-sonnet-4-6-20250514",
+                model="claude-sonnet-4-6",
                 max_tokens=1000,
                 messages=[{
                     "role": "user",

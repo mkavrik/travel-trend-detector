@@ -1,6 +1,6 @@
 # Metodologie — 2026-W12 / CZ
 
-> Generováno: 2026-03-17 21:41 UTC
+> Generováno: 2026-03-28 16:54 UTC
 
 ## Scoring model
 

@@ -4,9 +4,19 @@
 
 | Metrika | Hodnota |
 |---------|---------|
-| Trend Score | {{ dest.trend_score }} |
+| Typ příležitosti | {{ dest.opportunity_type }} |
+| Trend Score | {{ dest.trend_score }}{% if dest.trend_score != dest.trend_score_raw %} *(raw: {{ dest.trend_score_raw }})*{% endif %} |
+{% if dest.popularity_score > 0 -%}
+| Popularity Score | {{ dest.popularity_score }} |
+{% endif -%}
+| Volume assessment | {{ "⚠️ insufficient_data" if dest.volume_assessment == "insufficient_data" else "⚠️ low_volume" if dest.volume_assessment == "low_volume" else "✅ sufficient" }} |
+| Cross-platform | {{ "✅ confirmed" if dest.cross_platform_status == "confirmed" else "❌ unconfirmed" }} |
+| Search volume proxy | {{ dest.search_volume_proxy }} |
 | Content Gap Score | {{ dest.content_gap_score }} |
-| Opportunity Score | {{ dest.opportunity_score }} |
+| Opportunity Score | {{ dest.opportunity_score }}{% if dest.opportunity_score != dest.opportunity_score_raw %} *(raw: {{ dest.opportunity_score_raw }})*{% endif %} |
+{% if dest.evergreen_opportunity > 0 -%}
+| Evergreen Opportunity | {{ dest.evergreen_opportunity }} |
+{% endif -%}
 | Trh obsahu | {{ dest.market_category }} |
 | Region | {{ dest.region }} |
 | Typ aktivity | {{ dest.activity_type }} |
@@ -16,12 +26,95 @@
 
 {{ dest.trend_classification }} — tato destinace {{ "se nově objevila ve vyhledávání" if dest.trend_classification == "Breakout" else "zaznamenala meziroční nárůst zájmu" if dest.trend_classification == "Accelerating" else "má sezónní peak srovnatelný s minulými roky" if dest.trend_classification == "Seasonal Peak" else "zaznamenala pokles zájmu oproti loňsku" }}.
 
+{% if dest.source == "both" -%}
+**Rising query:** `{{ dest.rising_query }}` — {{ dest.rising_value }} | **Popularity:** {{ dest.popularity_score }}/100
+{% elif dest.source == "top" -%}
+**Top query:** `{{ dest.rising_query }}` — popularity {{ dest.popularity_score }}/100
+{% else -%}
+**Rising query:** `{{ dest.rising_query }}` — {{ dest.rising_value }}
+{% endif -%}
+
+{% if dest.trend_timeline and dest.trend_timeline.sparkline -%}
+### Google Trends — přehled 12 měsíců ({{ dest.trend_timeline.total_weeks }} týdnů)
+
+```
+{{ dest.trend_timeline.sparkline }}
+{% if dest.trend_timeline.peak_index >= 0 -%}
+{{ " " * dest.trend_timeline.peak_index }}^peak ({{ dest.trend_timeline.peak_value }}, {{ dest.trend_timeline.peak_label }})
+{% endif -%}
+```
+{% endif %}
+
+{% if dest.trend_timeline and dest.trend_timeline.weeks -%}
+### Detail — posledních 8 týdnů
+
+| Týden | Zájem (0–100) | Vizuálně |
+|-------|---------------|----------|
+{% for p in dest.trend_timeline.weeks -%}
+| {{ p.week }} | {{ p.value }} | {{ p.bar }} |
+{% endfor %}
+{% endif %}
+
+{% if dest.trend_timeline and dest.trend_timeline.seasonal and dest.trend_timeline.seasonal.values_now -%}
+### Sezónní srovnání ({{ dest.trend_timeline.seasonal.label }})
+
+```
+2025: {{ dest.trend_timeline.seasonal.values_ly | join(", ") }}  (peak: {{ dest.trend_timeline.seasonal.peak_ly }})
+2026: {{ dest.trend_timeline.seasonal.values_now | join(", ") }}  (peak: {{ dest.trend_timeline.seasonal.peak_now }})
+YoY peak change: {{ "+" if dest.trend_timeline.seasonal.yoy_peak_pct > 0 }}{{ dest.trend_timeline.seasonal.yoy_peak_pct }} %
+```
+{% endif %}
+
+{% if dest.instagram_velocity_pct is not none -%}
+### Instagram
+
+Hashtag `#{{ dest.instagram_hashtag }}` — velocity: **{{ "+" if dest.instagram_velocity_pct > 0 }}{{ dest.instagram_velocity_pct | round(1) }} %** (posl. 4 týdny vs předchozí 4 týdny)
+{% endif %}
+
 ## Jak je to pokryté obsahem?
 
+{% if dest.content_gap_detail and dest.content_gap_detail.top_results -%}
+### Top výsledky v Google Search
+
+| # | Název | Stáří | Jazyk |
+|---|-------|-------|-------|
+{% for r in dest.content_gap_detail.top_results -%}
+| {{ loop.index }} | [{{ r.title }}]({{ r.link }}) | {{ r.date }} | {{ "🇨🇿 CZ" if r.is_czech else "🌐 jiný" }} |
+{% endfor %}
+
+### Pokrytí obsahu
+
+| Metrika | Hodnota |
+|---------|---------|
+| Celkem výsledků v Google | {{ "{:,}".format(dest.content_gap_detail.total_results) }} |
+| V češtině (z top 10) | {{ dest.content_gap_detail.czech_count }} |
+| V jiném jazyce (z top 10) | {{ dest.content_gap_detail.other_lang_count }} |
+| Aktuální < 6 měsíců (z top 10) | {{ dest.content_gap_detail.fresh_count }} |
+| Starší > 6 měsíců (z top 10) | {{ dest.content_gap_detail.old_count }} |
+
+### Sub-skóre Content Gap
+
+| Složka | Skóre (0–100) | Váha |
+|--------|---------------|------|
+| Kvalita výsledků | {{ dest.content_gap_detail.quality_score }} | 40 % |
+| Aktuálnost | {{ dest.content_gap_detail.freshness_score }} | 30 % |
+| Jazyková kvalita | {{ dest.content_gap_detail.language_score }} | 20 % |
+| **Celkem (vážený)** | **{{ dest.content_gap_detail.score }}** | |
+
+{% if dest.content_gap_detail.content_types_found -%}
+**Nalezené typy obsahu:** {{ dest.content_gap_detail.content_types_found | join(", ") }}
+{% endif -%}
+
+{% if dest.content_gap_detail.content_types_missing -%}
+**Chybějící typy obsahu:** {{ dest.content_gap_detail.content_types_missing | join(", ") }}
+{% endif %}
+
+{% endif -%}
+
 {% if dest.content_gap_assessment -%}
+### Zhodnocení (Claude AI)
+
 {{ dest.content_gap_assessment }}
-{% else -%}
-Content Gap Score: {{ dest.content_gap_score }}/100
 {% endif %}
 
 ## Verdikt

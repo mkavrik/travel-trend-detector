@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import logging
+import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 import httpx
 
@@ -15,6 +16,15 @@ SERPAPI_BASE = "https://serpapi.com/search"
 MAX_RETRIES = 3
 BACKOFF_BASE = 2.0
 
+# URLs matching these patterns are search-engine result pages, not real articles.
+_SEARCH_ENGINE_RE = re.compile(
+    r"(?:search(?:test)?\.seznam\.cz"
+    r"|google\.com/search"
+    r"|bing\.com/search"
+    r"|yahoo\.com/search)",
+    re.IGNORECASE,
+)
+
 
 @dataclass
 class SearchResult:
@@ -26,9 +36,20 @@ class SearchResult:
 
 
 @dataclass
+class QueryResults:
+    query: str
+    results: list[SearchResult] = field(default_factory=list)
+
+
+@dataclass
 class DestinationSearchData:
-    results: list[SearchResult]
+    results: list[SearchResult]             # flat list (all queries merged, for scoring)
     total_results: int
+    per_query: list[QueryResults] = field(default_factory=list)  # per-query breakdown
+
+
+def _is_search_engine_url(url: str) -> bool:
+    return bool(_SEARCH_ENGINE_RE.search(url))
 
 
 def _serpapi_search(params: dict) -> dict:
@@ -51,7 +72,9 @@ def _serpapi_search(params: dict) -> dict:
 
 def search_destination(destination: str, market_config: MarketConfig) -> DestinationSearchData:
     all_results: list[SearchResult] = []
+    per_query: list[QueryResults] = []
     max_total_results = 0
+    filtered_count = 0
 
     for template in market_config.google_search_templates:
         query = template.format(destination=destination)
@@ -74,16 +97,29 @@ def search_destination(destination: str, market_config: MarketConfig) -> Destina
         logger.info(f"  → total_results={total:,} for '{query}'")
 
         organic = data.get("organic_results", [])
-        logger.info(f"  → {len(organic)} organic results for '{query}'")
+        query_results = QueryResults(query=query)
 
         for item in organic:
-            all_results.append(SearchResult(
+            link = item.get("link", "")
+            if _is_search_engine_url(link):
+                filtered_count += 1
+                logger.debug(f"  Filtered search-engine URL: {link}")
+                continue
+
+            result = SearchResult(
                 position=item.get("position", 0),
                 title=item.get("title", ""),
-                link=item.get("link", ""),
+                link=link,
                 snippet=item.get("snippet", ""),
                 date=item.get("date"),
-            ))
+            )
+            query_results.results.append(result)
+            all_results.append(result)
 
+        per_query.append(query_results)
+        logger.info(f"  → {len(query_results.results)} organic results for '{query}'")
+
+    if filtered_count:
+        logger.info(f"Filtered {filtered_count} search-engine URLs for '{destination}'")
     logger.info(f"Total search results for '{destination}': {len(all_results)}, max total_results={max_total_results:,}")
-    return DestinationSearchData(results=all_results, total_results=max_total_results)
+    return DestinationSearchData(results=all_results, total_results=max_total_results, per_query=per_query)

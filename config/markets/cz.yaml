@@ -7,27 +7,56 @@ market:
 
 seed_queries:
   general:
-    - "dovolená 2026"
+    - "dovolená"
+    - "zájezd"
     - "kam na dovolenou"
-    - "nejlepší destinace léto"
-    - "kam na výlet zahraničí"
-    - "levná dovolená"
+    - "last minute"
+    - "letenky"
+    - "cestování"
+  beach:
+    - "dovolená moře"
+    - "dovolená pláž"
+    - "all inclusive"
+    - "ostrov dovolená"
   active:
-    - "treking zahraničí"
-    - "hiking evropa"
-    - "cyklo dovolená zahraničí"
     - "ferraty"
     - "via ferrata"
-  seasonal:
-    - "lyžování alpy"
-    - "letní dovolená moře"
-    - "vánoční trhy evropa"
-    - "podzimní výlet"
-  specific_control:
+    - "treking"
+    - "hiking"
+    - "cyklo dovolená"
+    - "horská turistika"
+    - "lezení"
+  winter:
+    - "lyžování"
+    - "ski resort"
+    - "zimní dovolená"
+  city:
+    - "víkend ve městě"
+    - "city break"
+    - "památky"
+  style:
+    - "road trip"
+    - "kemping"
+    - "glamping"
+    - "wellness víkend"
+    - "dovolená s dětmi"
+    - "romantická dovolená"
+  regions:
+    - "chorvatsko"
+    - "řecko"
+    - "itálie"
+    - "španělsko"
+    - "turecko"
+    - "egypt"
+    - "thajsko"
+    - "japonsko"
+    - "alpy"
     - "dolomity"
-    - "albánie dovolená"
-    - "gruzie cestování"
-    - "island"
+  control:
+    - "albánie"
+    - "gruzie"
+    - "omán"
+    - "zanzibar"
 
 instagram_hashtags:
   generic:

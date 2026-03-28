@@ -26,6 +26,7 @@ class TimelinePoint:
 class RelatedQuery:
     query: str
     value: int | str
+    source: str = "rising"  # "rising" | "top"
 
 
 @dataclass
@@ -41,6 +42,7 @@ class TrendData:
     market_code: str
     results: list[TrendResult] = field(default_factory=list)
     all_rising_queries: list[RelatedQuery] = field(default_factory=list)
+    all_top_queries: list[RelatedQuery] = field(default_factory=list)
 
 
 def _serpapi_request(params: dict) -> dict:
@@ -97,11 +99,11 @@ def fetch_related_queries(query: str, geo: str) -> tuple[list[RelatedQuery], lis
     related = data.get("related_queries", {})
 
     rising = [
-        RelatedQuery(query=r["query"], value=r.get("value", 0))
+        RelatedQuery(query=r["query"], value=r.get("value", 0), source="rising")
         for r in related.get("rising", [])
     ]
     top = [
-        RelatedQuery(query=r["query"], value=r.get("value", 0))
+        RelatedQuery(query=r["query"], value=r.get("value", 0), source="top")
         for r in related.get("top", [])
     ]
     return rising, top
@@ -111,6 +113,7 @@ def collect_trends(market_config: MarketConfig) -> TrendData:
     geo = market_config.google_trends_geo
     trend_data = TrendData(market_code=market_config.code)
     seen_rising: set[str] = set()
+    seen_top: set[str] = set()
 
     for query in market_config.all_seed_queries:
         logger.info(f"Fetching Google Trends for: {query}")
@@ -130,5 +133,14 @@ def collect_trends(market_config: MarketConfig) -> TrendData:
                 seen_rising.add(rq.query.lower())
                 trend_data.all_rising_queries.append(rq)
 
-    logger.info(f"Collected {len(trend_data.results)} trend queries, {len(trend_data.all_rising_queries)} unique rising queries")
+        for tq in top:
+            if tq.query.lower() not in seen_top:
+                seen_top.add(tq.query.lower())
+                trend_data.all_top_queries.append(tq)
+
+    logger.info(
+        f"Collected {len(trend_data.results)} trend queries, "
+        f"{len(trend_data.all_rising_queries)} unique rising, "
+        f"{len(trend_data.all_top_queries)} unique top"
+    )
     return trend_data
