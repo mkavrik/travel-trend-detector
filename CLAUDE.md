@@ -221,9 +221,50 @@ python -m src.main --market cz --dry-run -y
 - Claude API: ~800–1000 Haiku (classification) + ~60 Sonnet (gap + verdict)
 - **Celkem: ~300–350 SerpAPI + ~1000 Claude calls**
 
+## TODO: Monetizace content gap příležitostí
+
+Systém identifikuje konkrétní mezery v obsahu (viz verdikty). Otázka: jak tento obsah vytvořit a monetizovat?
+
+### Příklad: Polské moře (Evergreen, popularity 100, gap 32.8)
+Verdikt říká: chybí praktický průvodce letovisky, ceny ubytování, doprava z ČR, tipy na aktivity. Existuje jen roztříštěné YT vlogy bez praktické hodnoty.
+
+### Monetizační kanály k prozkoumání
+
+**Obsahové platformy (traffic → revenue):**
+- **SEO blog / microsite** — průvodce destinací, monetizace přes affiliate (Booking, Kiwi, GetYourGuide), display ads (Ezoic/Mediavine). Nízký startup cost, dlouhý tail traffic
+- **YouTube** — praktické průvodce (ne vlogy), monetizace AdSense + affiliate linky v popisu. Gap: stávající CZ obsah jsou jen vlogy, chybí informační formát
+- **Instagram/TikTok** — krátký formát, monetizace přes brand deals a affiliate. Vhodné pro inspiraci, méně pro praktické info
+- **Newsletter** — týdenní trend digest pro cestovatele, monetizace sponzory (CK, pojišťovny)
+
+**Affiliate & lead gen:**
+- **Booking/Airbnb affiliate** — v průvodci destinací přirozené "kde bydlet" sekce
+- **Cestovní pojištění** — affiliate na pojišťovny (vysoká provize ~20-30 %)
+- **Letenky (Kiwi, Skyscanner)** — affiliate CPC/CPA model
+- **Zájezdy (Invia, Slevomat)** — lead generation pro CK
+
+**Productized content:**
+- **PDF průvodce / e-book** — detailní offline průvodce za €5-15, prodej přes Gumroad
+- **Notion/Airtable itineráře** — hotové cestovní plány ke stažení
+- **Placený členský obsah** — exkluzivní tipy, off-the-beaten-path destinace
+
+**B2B:**
+- **Whitelabel reporty pro CK** — cestovky potřebují data o trendech pro plánování nabídky
+- **Content marketing pro travel brandy** — hotely/destinace platí za obsah v lokálním jazyce
+- **Konzultace pro DMO** (Destination Management Organizations) — data o tom, co trhy hledají
+
+### Klíčová otázka
+Systém generuje verdikty s konkrétním popisem chybějícího obsahu. Dá se automatizovat i tvorba? Např.:
+1. TTD identifikuje gap: "Polské moře — chybí průvodce letovisky, ceny, doprava"
+2. Claude vygeneruje strukturu článku na základě verdiktu + search results
+3. Člověk doplní aktuální ceny, fotky, osobní zkušenost
+4. Publikace na blog/YT s affiliate linky
+
+→ Polo-automatický content pipeline: detekce trendu → identifikace gapu → návrh obsahu → tvorba → distribuce → monetizace
+
 ## Budoucí fáze (NEREŠIT teď)
 
 - Fáze 2: Automatizace (weekly cron)
 - Fáze 3: Přidání dalších trhů (DE, UK, JP, KR, US, BR, FR)
 - Fáze 4: Cross-market analýza
 - Fáze 5: Automatická lokalizace a publikace obsahu
+- Fáze 6: Content generation pipeline (viz TODO výše)
