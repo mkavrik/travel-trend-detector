@@ -7,15 +7,16 @@ from dataclasses import dataclass
 
 from anthropic import Anthropic
 
-from src.config import get_env
+from src.config import MarketConfig, get_env
 
 logger = logging.getLogger(__name__)
 
 
 @dataclass
 class DestinationInfo:
-    destination_name: str
-    destination_name_cs: str
+    destination_name: str        # English canonical name
+    destination_name_local: str  # In target market language
+    destination_name_cs: str     # Czech name (for reports)
     country: str
     region: str
     activity_type: str
@@ -49,38 +50,62 @@ def _extract_json(text: str) -> dict:
     raise ValueError(f"No valid JSON found in response: {text[:200]}")
 
 
-def classify_destination(query: str, client: Anthropic) -> DestinationInfo | None:
+_LANG_NAMES = {
+    "cs": "Czech", "sk": "Slovak", "de": "German", "en": "English",
+    "fr": "French", "ja": "Japanese", "ko": "Korean", "pt": "Portuguese",
+}
+
+
+def classify_destination(query: str, client: Anthropic, market: MarketConfig | None = None) -> DestinationInfo | None:
     """Classify a query as a travel destination. Returns None if not a valid destination."""
+    country_name = market.country_name if market else "Česká republika"
+    language = market.language if market else "cs"
+    lang_name = _LANG_NAMES.get(language, language)
+    is_czech_market = language == "cs"
+
+    # For CZ market, local = cs, so we only need two names
+    # For other markets, we need local + cs + en
+    if is_czech_market:
+        name_fields = (
+            '  "destination_name": "string (English canonical name)",\n'
+            '  "destination_name_local": "string (česky)",\n'
+            '  "destination_name_cs": "string (česky, same as local)",\n'
+        )
+    else:
+        name_fields = (
+            f'  "destination_name": "string (English canonical name)",\n'
+            f'  "destination_name_local": "string (in {lang_name})",\n'
+            f'  "destination_name_cs": "string (in Czech)",\n'
+        )
+
     response = client.messages.create(
         model="claude-haiku-4-5-20251001",
         max_tokens=500,
         messages=[{
             "role": "user",
-            "content": f"""Analyzuj tento Google Trends search query z českého trhu: "{query}"
+            "content": f"""Analyze this Google Trends search query from the {country_name} market: "{query}"
 
-Rozhodni, jestli jde o ZAHRANIČNÍ cestovatelskou destinaci vhodnou pro content gap analýzu.
+Decide if this is a FOREIGN travel destination suitable for content gap analysis.
 
-ZAHOĎ (vrať {{"is_destination": false}}):
-- Služby a platformy: Invia, Airbnb, Booking, Kiwi
-- TV pořady, soutěže: Love Island, Amazing Race
-- Obecné pojmy: dovolená, last minute, all inclusive
-- České/lokální lokace: ferraty Hluboká, Český ráj, Sněžka
-- Příliš obecné destinace (celé země jako Rakousko, Řecko, Chorvatsko) — jsou moc široké
+DISCARD (return {{"is_destination": false}}):
+- Services and platforms: Invia, Airbnb, Booking, Kiwi
+- TV shows, competitions: Love Island, Amazing Race
+- Generic terms: dovolená, last minute, all inclusive, dovolenka
+- Domestic/local locations within {country_name}
+- Overly broad destinations (entire countries like Austria, Greece, Croatia) — too wide
 
-NECH (vrať plný JSON):
-- Konkrétní zahraniční destinace: Jezero Braies, Seceda, Brenta, Valbona
-- Konkrétní regiony: Dolomity, Albánské Alpy, Kappadokie
-- Menší/specifické země: Omán, Gruzie, Albánie, Island
+KEEP (return full JSON):
+- Specific foreign destinations: Lake Braies, Seceda, Brenta, Valbona
+- Specific regions: Dolomites, Albanian Alps, Cappadocia
+- Smaller/specific countries: Oman, Georgia, Albania, Iceland
 
-Pokud query NENÍ vhodná zahraniční destinace, odpověz POUZE:
+If the query is NOT a suitable foreign destination, respond ONLY:
 {{"is_destination": false}}
 
-Pokud JE vhodná destinace, odpověz POUZE:
+If it IS a suitable destination, respond ONLY:
 {{
   "is_destination": true,
-  "destination_name": "string (anglicky)",
-  "destination_name_cs": "string (česky)",
-  "country": "string",
+{name_fields}  "country": "string",
   "region": "string",
   "activity_type": "string",
   "season": "string (best season)"
@@ -97,9 +122,20 @@ Pokud JE vhodná destinace, odpověz POUZE:
         logger.info(f"Skipping non-destination query: '{query}'")
         return None
 
+    # Fallback: if local/cs missing, fill from each other or from English name
+    name_en = result.get("destination_name", "")
+    name_local = result.get("destination_name_local", "")
+    name_cs = result.get("destination_name_cs", "")
+
+    if not name_local:
+        name_local = name_cs or name_en
+    if not name_cs:
+        name_cs = name_local or name_en
+
     return DestinationInfo(
-        destination_name=result["destination_name"],
-        destination_name_cs=result["destination_name_cs"],
+        destination_name=name_en,
+        destination_name_local=name_local,
+        destination_name_cs=name_cs,
         country=result["country"],
         region=result["region"],
         activity_type=result["activity_type"],
@@ -112,22 +148,35 @@ def generate_verdict(
     trend_data: dict,
     content_gap_data: dict,
     client: Anthropic,
+    market: MarketConfig | None = None,
 ) -> str:
+    country_name = market.country_name if market else "Česká republika"
+    language = market.language if market else "cs"
+    lang_name = _LANG_NAMES.get(language, language)
+
+    perspective_note = ""
+    if language != "cs":
+        perspective_note = (
+            f"\nDŮLEŽITÉ: Hodnotíš content gap z pohledu uživatelů z trhu {country_name}. "
+            f"Ti hledají obsah v {lang_name.lower()}čině. "
+            f"Verdikt piš ČESKY, ale perspektiva = {country_name} trh."
+        )
+
     response = client.messages.create(
         model="claude-sonnet-4-6",
         max_tokens=1000,
         messages=[{
             "role": "user",
-            "content": f"""Na základě těchto dat vygeneruj stručný verdikt (3-5 vět česky) o příležitosti pro cestovatelský obsah o destinaci "{destination_name}".
-
+            "content": f"""Na základě těchto dat vygeneruj stručný verdikt (3-5 vět česky) o příležitosti pro cestovatelský obsah o destinaci "{destination_name}" cílený na uživatele z {country_name}.
+{perspective_note}
 Trend data:
 {json.dumps(trend_data, ensure_ascii=False, indent=2)}
 
 Content gap data:
 {json.dumps(content_gap_data, ensure_ascii=False, indent=2)}
 
-Zahrň: proč to trenduje, jak velký je content gap, jaký typ obsahu by měl největší šanci uspět.
-Odpověz POUZE textem verdiktu, bez JSON.""",
+Zahrň: proč to trenduje, jak velký je content gap pro {lang_name.lower()} obsah, jaký typ obsahu by měl největší šanci uspět.
+Odpověz POUZE textem verdiktu česky, bez JSON.""",
         }],
     )
 

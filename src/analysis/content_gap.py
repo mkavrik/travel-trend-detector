@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from anthropic import Anthropic
 
 from src.collectors.google_search import SearchResult
+from src.config import MarketConfig
 
 logger = logging.getLogger(__name__)
 
@@ -78,18 +79,25 @@ def _score_freshness(results: list[SearchResult]) -> float:
     return round((1 - freshness_ratio) * 100, 1)
 
 
+_LANG_INDICATORS: dict[str, list[str]] = {
+    "cs": ["č", "ř", "ž", "š", "ě", "ů", "ú", "ý", "á", "í", "é"],
+    "sk": ["č", "ž", "š", "ť", "ď", "ň", "ľ", "ĺ", "ŕ", "ô", "á", "í", "é", "ú", "ý"],
+    "de": ["ä", "ö", "ü", "ß"],
+    "fr": ["é", "è", "ê", "ë", "à", "â", "ù", "û", "ç", "ô", "î", "ï"],
+}
+
+
 def _score_language_quality(results: list[SearchResult], target_language: str) -> float:
     """Score 0-100: fewer native-language results = higher gap."""
     if not results:
         return 100.0
 
-    # Heuristic: Czech characters indicate Czech content
-    czech_indicators = ["č", "ř", "ž", "š", "ě", "ů", "ú", "ý", "á", "í", "é"]
+    indicators = _LANG_INDICATORS.get(target_language, _LANG_INDICATORS["cs"])
 
     native_count = 0
     for r in results[:10]:
         text = (r.title + " " + r.snippet).lower()
-        if any(c in text for c in czech_indicators):
+        if any(c in text for c in indicators):
             native_count += 1
 
     native_ratio = native_count / min(len(results), 10)
@@ -107,15 +115,26 @@ def _score_search_quality(results: list[SearchResult]) -> float:
     return round((1 - count / 10) * 100, 1)
 
 
+_LANG_FULL_NAMES = {
+    "cs": "čeština", "sk": "slovenština", "de": "němčina", "en": "angličtina",
+    "fr": "francouzština", "ja": "japonština", "ko": "korejština", "pt": "portugalština",
+}
+
+
 def score_content_gap(
     search_results: list[SearchResult],
     destination: str,
     claude_client: Anthropic | None = None,
     total_results: int = 0,
+    market: MarketConfig | None = None,
 ) -> ContentGapScore:
+    language = market.language if market else "cs"
+    country_name = market.country_name if market else "Česká republika"
+    lang_full = _LANG_FULL_NAMES.get(language, language)
+
     quality_score = _score_search_quality(search_results)
     freshness_score = _score_freshness(search_results)
-    language_score = _score_language_quality(search_results, "cs")
+    language_score = _score_language_quality(search_results, language)
     social_score = 50.0  # Default; would be refined with social data
 
     assessment = ""
@@ -129,20 +148,29 @@ def score_content_gap(
                 f"{i+1}. {r.title}\n   {r.snippet}\n   Date: {r.date or 'N/A'}"
                 for i, r in enumerate(search_results[:10])
             )
+
+            perspective_note = ""
+            if language != "cs":
+                perspective_note = (
+                    f"\nDŮLEŽITÉ: Hodnotíš kvalitu obsahu z pohledu uživatelů z {country_name}, "
+                    f"kteří hledají obsah v jazyce: {lang_full}. "
+                    f"Assessment piš ČESKY, ale hodnoť dostupnost obsahu v {lang_full}ě."
+                )
+
             response = claude_client.messages.create(
                 model="claude-sonnet-4-6",
                 max_tokens=1000,
                 messages=[{
                     "role": "user",
-                    "content": f"""Analyzuj tyto Google Search výsledky pro destinaci "{destination}" v češtině a zhodnoť kvalitu cestovatelského obsahu.
-
+                    "content": f"""Analyzuj tyto Google Search výsledky pro destinaci "{destination}" a zhodnoť kvalitu cestovatelského obsahu dostupného pro uživatele z {country_name} (hledají obsah v {lang_full}ě).
+{perspective_note}
 Výsledky:
 {formatted}
 
 Odpověz POUZE validním JSON:
 {{
   "quality_score": 0-100,
-  "assessment_cs": "stručné zhodnocení v češtině (2-3 věty)",
+  "assessment_cs": "stručné zhodnocení česky (2-3 věty) — hodnoť dostupnost obsahu v {lang_full}ě pro trh {country_name}",
   "quality_articles_count": number,
   "content_types_found": ["blog", "agentura", "wiki"],
   "content_types_missing": ["hiking guide", "practical tips"],

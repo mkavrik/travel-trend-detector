@@ -1,0 +1,388 @@
+[
+  {
+    "query": "dovolená",
+    "timeline": [
+      {
+        "date": "Mar 23 – 29, 2025",
+        "value": 43
+      },
+      {
+        "date": "Mar 30 – Apr 5, 2025",
+        "value": 43
+      },
+      {
+        "date": "Apr 6 – 12, 2025",
+        "value": 38
+      },
+      {
+        "date": "Apr 13 – 19, 2025",
+        "value": 38
+      },
+      {
+        "date": "Apr 20 – 26, 2025",
+        "value": 43
+      },
+      {
+        "date": "Apr 27 – May 3, 2025",
+        "value": 48
+      },
+      {
+        "date": "May 4 – 10, 2025",
+        "value": 46
+      },
+      {
+        "date": "May 11 – 17, 2025",
+        "value": 52
+      },
+      {
+        "date": "May 18 – 24, 2025",
+        "value": 50
+      },
+      {
+        "date": "May 25 – 31, 2025",
+        "value": 58
+      },
+      {
+        "date": "Jun 1 – 7, 2025",
+        "value": 62
+      },
+      {
+        "date": "Jun 8 – 14, 2025",
+        "value": 70
+      },
+      {
+        "date": "Jun 15 – 21, 2025",
+        "value": 80
+      },
+      {
+        "date": "Jun 22 – 28, 2025",
+        "value": 88
+      },
+      {
+        "date": "Jun 29 – Jul 5, 2025",
+        "value": 100
+      },
+      {
+        "date": "Jul 6 – 12, 2025",
+        "value": 93
+      },
+      {
+        "date": "Jul 13 – 19, 2025",
+        "value": 92
+      },
+      {
+        "date": "Jul 20 – 26, 2025",
+        "value": 92
+      },
+      {
+        "date": "Jul 27 – Aug 2, 2025",
+        "value": 87
+      },
+      {
+        "date": "Aug 3 – 9, 2025",
+        "value": 84
+      },
+      {
+        "date": "Aug 10 – 16, 2025",
+        "value": 78
+      },
+      {
+        "date": "Aug 17 – 23, 2025",
+        "value": 74
+      },
+      {
+        "date": "Aug 24 – 30, 2025",
+        "value": 57
+      },
+      {
+        "date": "Aug 31 – Sep 6, 2025",
+        "value": 61
+      },
+      {
+        "date": "Sep 7 – 13, 2025",
+        "value": 51
+      },
+      {
+        "date": "Sep 14 – 20, 2025",
+        "value": 47
+      },
+      {
+        "date": "Sep 21 – 27, 2025",
+        "value": 46
+      },
+      {
+        "date": "Sep 28 – Oct 4, 2025",
+        "value": 46
+      },
+      {
+        "date": "Oct 5 – 11, 2025",
+        "value": 52
+      },
+      {
+        "date": "Oct 12 – 18, 2025",
+        "value": 50
+      },
+      {
+        "date": "Oct 19 – 25, 2025",
+        "value": 45
+      },
+      {
+        "date": "Oct 26 – Nov 1, 2025",
+        "value": 47
+      },
+      {
+        "date": "Nov 2 – 8, 2025",
+        "value": 44
+      },
+      {
+        "date": "Nov 9 – 15, 2025",
+        "value": 44
+      },
+      {
+        "date": "Nov 16 – 22, 2025",
+        "value": 45
+      },
+      {
+        "date": "Nov 23 – 29, 2025",
+        "value": 49
+      },
+      {
+        "date": "Nov 30 – Dec 6, 2025",
+        "value": 40
+      },
+      {
+        "date": "Dec 7 – 13, 2025",
+        "value": 61
+      },
+      {
+        "date": "Dec 14 – 20, 2025",
+        "value": 44
+      },
+      {
+        "date": "Dec 21 – 27, 2025",
+        "value": 66
+      },
+      {
+        "date": "Dec 28, 2025 – Jan 3, 2026",
+        "value": 65
+      },
+      {
+        "date": "Jan 4 – 10, 2026",
+        "value": 78
+      },
+      {
+        "date": "Jan 11 – 17, 2026",
+        "value": 70
+      },
+      {
+        "date": "Jan 18 – 24, 2026",
+        "value": 78
+      },
+      {
+        "date": "Jan 25 – 31, 2026",
+        "value": 72
+      },
+      {
+        "date": "Feb 1 – 7, 2026",
+        "value": 76
+      },
+      {
+        "date": "Feb 8 – 14, 2026",
+        "value": 56
+      },
+      {
+        "date": "Feb 15 – 21, 2026",
+        "value": 65
+      },
+      {
+        "date": "Feb 22 – 28, 2026",
+        "value": 62
+      },
+      {
+        "date": "Mar 1 – 7, 2026",
+        "value": 70
+      },
+      {
+        "date": "Mar 8 – 14, 2026",
+        "value": 52
+      },
+      {
+        "date": "Mar 15 – 21, 2026",
+        "value": 61
+      },
+      {
+        "date": "Mar 22 – 28, 2026",
+        "value": 55
+      }
+    ],
+    "rising_queries": [
+      {
+        "query": "otcovská dovolená 2026",
+        "value": "Breakout",
+        "source": "rising"
+      },
+      {
+        "query": "dovolená 2026",
+        "value": "Breakout",
+        "source": "rising"
+      },
+      {
+        "query": "dovolená egypt 2026",
+        "value": "Breakout",
+        "source": "rising"
+      },
+      {
+        "query": "srí lanka dovolená",
+        "value": "+90%",
+        "source": "rising"
+      },
+      {
+        "query": "otcovská dovolená 2025",
+        "value": "+60%",
+        "source": "rising"
+      },
+      {
+        "query": "dovolená v chorvatsku",
+        "value": "+60%",
+        "source": "rising"
+      },
+      {
+        "query": "lefkada dovolená",
+        "value": "+50%",
+        "source": "rising"
+      },
+      {
+        "query": "polsko dovolená u moře",
+        "value": "+50%",
+        "source": "rising"
+      }
+    ],
+    "top_queries": [
+      {
+        "query": "dovolená 2025",
+        "value": "100",
+        "source": "top"
+      },
+      {
+        "query": "dovolená 2026",
+        "value": "97",
+        "source": "top"
+      },
+      {
+        "query": "last minute dovolená",
+        "value": "89",
+        "source": "top"
+      },
+      {
+        "query": "dovolená u moře",
+        "value": "69",
+        "source": "top"
+      },
+      {
+        "query": "dovolená all inclusive",
+        "value": "54",
+        "source": "top"
+      },
+      {
+        "query": "řecko dovolená",
+        "value": "53",
+        "source": "top"
+      },
+      {
+        "query": "dovolená egypt",
+        "value": "44",
+        "source": "top"
+      },
+      {
+        "query": "dovolená s dětmi",
+        "value": "42",
+        "source": "top"
+      },
+      {
+        "query": "turecko dovolená",
+        "value": "42",
+        "source": "top"
+      },
+      {
+        "query": "chorvatsko dovolená",
+        "value": "35",
+        "source": "top"
+      },
+      {
+        "query": "čedok dovolená",
+        "value": "30",
+        "source": "top"
+      },
+      {
+        "query": "albánie dovolená",
+        "value": "28",
+        "source": "top"
+      },
+      {
+        "query": "mateřská dovolená",
+        "value": "25",
+        "source": "top"
+      },
+      {
+        "query": "otcovská dovolená",
+        "value": "25",
+        "source": "top"
+      },
+      {
+        "query": "dovolená itálie",
+        "value": "24",
+        "source": "top"
+      },
+      {
+        "query": "invia dovolená",
+        "value": "23",
+        "source": "top"
+      },
+      {
+        "query": "bulharsko dovolená",
+        "value": "22",
+        "source": "top"
+      },
+      {
+        "query": "dovolená španělsko",
+        "value": "21",
+        "source": "top"
+      },
+      {
+        "query": "dovolená maledivy",
+        "value": "20",
+        "source": "top"
+      },
+      {
+        "query": "rodičovská dovolená",
+        "value": "20",
+        "source": "top"
+      },
+      {
+        "query": "levná dovolená",
+        "value": "19",
+        "source": "top"
+      },
+      {
+        "query": "dovolená kapverdy",
+        "value": "18",
+        "source": "top"
+      },
+      {
+        "query": "dovolená polsko",
+        "value": "18",
+        "source": "top"
+      },
+      {
+        "query": "sardinie dovolená",
+        "value": "18",
+        "source": "top"
+      },
+      {
+        "query": "dovolená zanzibar",
+        "value": "18",
+        "source": "top"
+      }
+    ]
+  }
+]

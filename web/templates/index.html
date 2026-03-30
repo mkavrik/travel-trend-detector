@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Trend Detector</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Travel Trend Detector</h1>
+    <p class="subtitle">Detekce cestovatelskych trendu a content gap prilezitosti</p>
+
+    <!-- 1. Market select -->
+    <div class="section">
+        <div class="section-title">1 &mdash; Vyber zemi</div>
+        <select id="market-select">
+            <option value="">Nacitam...</option>
+        </select>
+    </div>
+
+    <!-- Rest of form (hidden until market loaded) -->
+    <div id="main-form">
+
+        <!-- 2. Output path -->
+        <div class="section">
+            <div class="section-title">2 &mdash; Vystup</div>
+            <div id="output-path" class="output-path">reports/...</div>
+        </div>
+
+        <!-- 3. Seed queries -->
+        <div class="section">
+            <div class="section-title">3 &mdash; Seed queries</div>
+            <div class="global-toggles">
+                <button class="category-toggle" onclick="toggleAll(true)">Vybrat vse</button>
+                <button class="category-toggle" onclick="toggleAll(false)">Zrusit vse</button>
+            </div>
+            <div id="seed-queries"></div>
+        </div>
+
+        <!-- 4. Cost estimate -->
+        <div class="section">
+            <div class="section-title">4 &mdash; Odhad nakladu</div>
+            <div class="cost-grid">
+                <div class="cost-item">
+                    <span class="cost-label">SerpAPI (Trends)</span>
+                    <span class="cost-value" id="cost-trends">0</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">SerpAPI (Search)</span>
+                    <span class="cost-value" id="cost-search">~0</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">SerpAPI (Volume)</span>
+                    <span class="cost-value" id="cost-volume">~0</span>
+                </div>
+                <div class="cost-item">
+                    <span class="cost-label">Claude API</span>
+                    <span class="cost-value" id="cost-claude">~$0</span>
+                </div>
+                <div class="cost-total">
+                    <span>Celkem SerpAPI</span>
+                    <span id="cost-total">~0 calls</span>
+                </div>
+            </div>
+            <div class="toggle-row">
+                <input type="checkbox" id="skip-instagram" checked>
+                <label for="skip-instagram">Preskocit Instagram</label>
+            </div>
+        </div>
+
+        <!-- 5. Run -->
+        <button class="run-btn" id="run-btn" onclick="startPipeline()">&#9654; Run Pipeline</button>
+
+        <!-- 6. Log panel -->
+        <div class="log-panel" id="log-panel"></div>
+
+        <!-- 7. Completion bar -->
+        <div class="completion-bar" id="completion-bar">
+            <span class="msg" id="completion-msg"></span>
+            <button onclick="openFinder()">Open in Finder</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// -------------------------------------------------------------------------
+// State
+// -------------------------------------------------------------------------
+let currentMarket = null;
+let marketData = null;
+let searchTemplateCount = 4;
+let currentWeek = '';
+let lastReportDir = '';
+
+// -------------------------------------------------------------------------
+// Init
+// -------------------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', async () => {
+    const res = await fetch('/api/markets');
+    const markets = await res.json();
+    const sel = document.getElementById('market-select');
+    sel.innerHTML = '<option value="">-- Vyber zemi --</option>';
+    for (const m of markets) {
+        const opt = document.createElement('option');
+        opt.value = m.code;
+        opt.textContent = `${m.name} (${m.code.toUpperCase()})`;
+        sel.appendChild(opt);
+    }
+    sel.addEventListener('change', () => loadMarket(sel.value));
+});
+
+// -------------------------------------------------------------------------
+// Load market
+// -------------------------------------------------------------------------
+async function loadMarket(code) {
+    if (!code) {
+        document.getElementById('main-form').classList.remove('visible');
+        return;
+    }
+    const res = await fetch(`/api/markets/${code}`);
+    marketData = await res.json();
+    currentMarket = code;
+    searchTemplateCount = (marketData.google_search_templates || []).length || 4;
+
+    // Generate current ISO week
+    const now = new Date();
+    const jan4 = new Date(now.getFullYear(), 0, 4);
+    const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 1)) / 86400000);
+    const weekNum = Math.ceil((dayOfYear + jan4.getDay() + 1) / 7);
+    const wk = String(weekNum).padStart(2, '0');
+    currentWeek = `${now.getFullYear()}-W${wk}`;
+    updateOutputPath();
+
+    renderSeedQueries(marketData.seed_queries);
+    updateCost();
+    document.getElementById('main-form').classList.add('visible');
+}
+
+// -------------------------------------------------------------------------
+// Output path preview
+// -------------------------------------------------------------------------
+function updateOutputPath() {
+    if (!currentMarket || !currentWeek) return;
+    const parts = currentWeek.split('-');
+    const year = parts[0];
+    const wk = parts[1];
+    const mc = currentMarket.toUpperCase();
+    const now = new Date();
+    const ts = now.getFullYear().toString()
+        + String(now.getMonth()+1).padStart(2,'0')
+        + String(now.getDate()).padStart(2,'0')
+        + '-'
+        + String(now.getHours()).padStart(2,'0')
+        + String(now.getMinutes()).padStart(2,'0')
+        + String(now.getSeconds()).padStart(2,'0');
+    document.getElementById('output-path').textContent =
+        `reports/${year}/${wk}/${mc}/${ts}/`;
+}
+
+// -------------------------------------------------------------------------
+// Seed queries rendering
+// -------------------------------------------------------------------------
+function renderSeedQueries(seedQueries) {
+    const container = document.getElementById('seed-queries');
+    container.innerHTML = '';
+    for (const [cat, queries] of Object.entries(seedQueries)) {
+        const group = document.createElement('div');
+        group.className = 'category-group';
+
+        const header = document.createElement('div');
+        header.className = 'category-header';
+        header.innerHTML = `
+            <span class="category-name">${cat}</span>
+            <button class="category-toggle" data-cat="${cat}">Zrusit vse</button>
+        `;
+        group.appendChild(header);
+
+        const chips = document.createElement('div');
+        chips.className = 'query-chips';
+
+        for (const q of queries) {
+            const id = `q-${cat}-${q.replace(/\s+/g, '_')}`;
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.className = 'query-chip';
+            cb.id = id;
+            cb.checked = true;
+            cb.dataset.cat = cat;
+            cb.dataset.query = q;
+            cb.addEventListener('change', updateCost);
+
+            const lbl = document.createElement('label');
+            lbl.htmlFor = id;
+            lbl.textContent = q;
+
+            chips.appendChild(cb);
+            chips.appendChild(lbl);
+        }
+        group.appendChild(chips);
+        container.appendChild(group);
+
+        // Toggle button
+        header.querySelector('.category-toggle').addEventListener('click', function() {
+            const boxes = chips.querySelectorAll('.query-chip');
+            const allChecked = Array.from(boxes).every(b => b.checked);
+            boxes.forEach(b => b.checked = !allChecked);
+            this.textContent = allChecked ? 'Vybrat vse' : 'Zrusit vse';
+            updateCost();
+        });
+    }
+}
+
+// -------------------------------------------------------------------------
+// Global toggle
+// -------------------------------------------------------------------------
+function toggleAll(state) {
+    document.querySelectorAll('.query-chip').forEach(cb => cb.checked = state);
+    // Update per-category toggle button labels
+    document.querySelectorAll('.category-header .category-toggle').forEach(btn => {
+        btn.textContent = state ? 'Zrusit vse' : 'Vybrat vse';
+    });
+    updateCost();
+}
+
+// -------------------------------------------------------------------------
+// Cost estimate
+// -------------------------------------------------------------------------
+function getSelectedCount() {
+    return document.querySelectorAll('.query-chip:checked').length;
+}
+
+function updateCost() {
+    const n = getSelectedCount();
+    const trends = n * 2;
+    const estDest = n * 3;
+    const volume = estDest;
+    const search = Math.min(estDest, 30) * searchTemplateCount;
+    const total = trends + volume + search;
+
+    // Claude: ~20 per seed (classification) + ~3 per dest (gap + verdict)
+    const claudeCalls = n * 20 + Math.min(estDest, 30) * 3;
+    const claudeCost = (claudeCalls * 0.001).toFixed(2); // rough estimate
+
+    document.getElementById('cost-trends').textContent = trends;
+    document.getElementById('cost-search').textContent = `~${search}`;
+    document.getElementById('cost-volume').textContent = `~${volume}`;
+    document.getElementById('cost-claude').textContent = `~$${claudeCost}`;
+    document.getElementById('cost-total').textContent = `~${total} calls`;
+}
+
+// -------------------------------------------------------------------------
+// Collect selected queries
+// -------------------------------------------------------------------------
+function getSelectedQueries() {
+    const result = {};
+    document.querySelectorAll('.query-chip:checked').forEach(cb => {
+        const cat = cb.dataset.cat;
+        if (!result[cat]) result[cat] = [];
+        result[cat].push(cb.dataset.query);
+    });
+    return result;
+}
+
+// -------------------------------------------------------------------------
+// Run pipeline
+// -------------------------------------------------------------------------
+async function startPipeline() {
+    const btn = document.getElementById('run-btn');
+    const logPanel = document.getElementById('log-panel');
+    const completionBar = document.getElementById('completion-bar');
+
+    btn.disabled = true;
+    btn.textContent = 'Running...';
+    logPanel.innerHTML = '';
+    logPanel.classList.add('visible');
+    completionBar.classList.remove('visible');
+    lastReportDir = '';
+
+    const body = {
+        market: currentMarket,
+        week: currentWeek,
+        selected_queries: getSelectedQueries(),
+        skip_instagram: document.getElementById('skip-instagram').checked,
+    };
+
+    try {
+        const res = await fetch('/api/run', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.error) {
+            appendLog(`Error: ${data.error}`, 'err');
+            btn.disabled = false;
+            btn.textContent = '\u25B6 Run Pipeline';
+            return;
+        }
+    } catch (e) {
+        appendLog(`Failed to start: ${e}`, 'err');
+        btn.disabled = false;
+        btn.textContent = '\u25B6 Run Pipeline';
+        return;
+    }
+
+    // Connect to SSE stream
+    const evtSource = new EventSource('/api/run/stream');
+
+    evtSource.addEventListener('log', (e) => {
+        appendLog(e.data);
+    });
+
+    evtSource.addEventListener('ping', () => {
+        // keepalive — do nothing
+    });
+
+    evtSource.addEventListener('done', (e) => {
+        evtSource.close();
+        lastReportDir = e.data;
+        appendLog(`\u2705 Done! Report saved to ${lastReportDir}`, 'ok');
+        btn.disabled = false;
+        btn.textContent = '\u25B6 Run Pipeline';
+
+        const msg = document.getElementById('completion-msg');
+        msg.innerHTML = `\u2705 Report vygenerovan: <strong>${lastReportDir}</strong>`;
+        completionBar.classList.add('visible');
+    });
+
+    evtSource.addEventListener('error', (e) => {
+        // Named "error" event from our SSE backend (has data)
+        if (e.data) {
+            appendLog(`\u274C Error: ${e.data}`, 'err');
+        }
+    });
+
+    evtSource.onerror = (e) => {
+        // Browser connection error — EventSource auto-reconnects by default.
+        // Only close if the readyState is CLOSED (server terminated).
+        console.error('SSE connection error:', e);
+        if (evtSource.readyState === EventSource.CLOSED) {
+            appendLog('[Connection lost]', 'warn');
+            btn.disabled = false;
+            btn.textContent = '\u25B6 Run Pipeline';
+        }
+    };
+}
+
+function appendLog(text, type) {
+    const panel = document.getElementById('log-panel');
+    const line = document.createElement('div');
+    line.className = 'line';
+
+    if (type === 'ok' || text.includes('\u2705')) line.classList.add('line-ok');
+    else if (type === 'warn' || text.includes('\u26A0\uFE0F') || text.includes('WARNING')) line.classList.add('line-warn');
+    else if (type === 'err' || text.includes('\u274C') || text.includes('ERROR')) line.classList.add('line-err');
+
+    line.textContent = text;
+    panel.appendChild(line);
+    panel.scrollTop = panel.scrollHeight;
+}
+
+// -------------------------------------------------------------------------
+// Completion actions
+// -------------------------------------------------------------------------
+async function openFinder() {
+    if (!lastReportDir) return;
+    await fetch('/api/open-finder', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({path: lastReportDir}),
+    });
+}
+</script>
+</body>
+</html>

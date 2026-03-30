@@ -27,8 +27,18 @@ def generate_report(
     market_code: str,
     week: str,
     raw_data: dict | None = None,
+    timestamp: str | None = None,
 ) -> Path:
-    report_dir = REPORTS_DIR / f"{week}-{market_code}"
+    # New structure: reports/{year}/W{wk}/{market}/{timestamp}/
+    # week is e.g. "2026-W13" → year="2026", wk="W13"
+    parts = week.split("-", 1)
+    year = parts[0]
+    wk = parts[1] if len(parts) > 1 else week
+
+    if not timestamp:
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
+
+    report_dir = REPORTS_DIR / year / wk / market_code / timestamp
     dest_dir = report_dir / "destinations"
     raw_dir = report_dir / "raw-data"
 

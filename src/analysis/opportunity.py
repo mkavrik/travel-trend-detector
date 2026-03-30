@@ -219,8 +219,9 @@ BOTH_BONUS = 15
 
 @dataclass
 class Destination:
-    name: str
-    name_cs: str
+    name: str           # English canonical
+    name_local: str     # In target market language
+    name_cs: str        # Czech (for reports)
     country: str
     region: str
     activity_type: str

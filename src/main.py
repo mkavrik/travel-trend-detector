@@ -31,6 +31,7 @@ from src.collectors.google_trends import collect_trends
 from src.collectors.instagram import collect_instagram_data
 from src.config import load_market_config
 from src.report.generator import generate_report
+from src.utils.log_stream import PipelineLogger
 from src.utils.normalization import normalize_destination_name
 
 logging.basicConfig(
@@ -45,64 +46,85 @@ def _current_week() -> str:
     return now.strftime("%G-W%V")
 
 
-@click.command()
-@click.option("--market", required=True, help="Market code (e.g. cz)")
-@click.option("--week", default=None, help="Week identifier (e.g. 2026-W12). Defaults to current week.")
-@click.option("--dry-run", is_flag=True, help="Only collect data, don't generate report.")
-@click.option("--skip-instagram", is_flag=True, help="Skip Instagram data collection.")
-@click.option("--yes", "-y", is_flag=True, help="Skip API call confirmation prompt.")
-def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes: bool) -> None:
-    """Travel Trend × Content Gap Detector — CLI entry point."""
+def run_pipeline(
+    market: str,
+    week: str | None = None,
+    dry_run: bool = False,
+    skip_instagram: bool = False,
+    selected_queries: dict[str, list[str]] | None = None,
+    log: PipelineLogger | None = None,
+) -> str | None:
+    """Run the pipeline programmatically.
+
+    Args:
+        market: Market code (e.g. "cz").
+        week: Week identifier (e.g. "2026-W12"). Defaults to current week.
+        dry_run: Only collect data, don't generate report.
+        skip_instagram: Skip Instagram data collection.
+        selected_queries: If provided, only use these seed queries (category -> list).
+        log: Optional PipelineLogger for streaming progress to the web UI.
+
+    Returns:
+        Path to the generated report directory, or None for dry runs.
+    """
+    if log is None:
+        log = PipelineLogger()
+
     week = week or _current_week()
-    logger.info(f"Starting TTD for market={market.upper()}, week={week}")
+    timestamp = datetime.now().strftime("%Y%m%d-%H%M%S")
+    log.log(f"Starting pipeline for {market.upper()}, week={week}")
 
     # Load config
     market_config = load_market_config(market)
 
+    # If selected_queries provided, override the config's seed_queries
+    if selected_queries is not None:
+        market_config.seed_queries = selected_queries
+
     # --- API call estimate ---
     n_seeds = len(market_config.all_seed_queries)
-    trends_calls = n_seeds * 2  # interest_over_time + related_queries
-    est_destinations = n_seeds * 3  # rough: ~3 unique destinations per seed
-    volume_calls = est_destinations  # interest_over_time per destination
+    trends_calls = n_seeds * 2
+    est_destinations = n_seeds * 3
+    volume_calls = est_destinations
     search_calls = min(est_destinations, 30) * len(market_config.google_search_templates)
     total_est = trends_calls + volume_calls + search_calls
-
-    logger.info(f"API call estimate: {n_seeds} seeds × 2 = {trends_calls} trends calls")
-    logger.info(f"  + ~{volume_calls} volume checks + ~{search_calls} search calls")
-    logger.info(f"  = ~{total_est} total SerpAPI calls")
-
-    if not yes:
-        confirm = click.prompt(f"Estimated ~{total_est} SerpAPI calls. Pokračovat? (y/n)", default="y")
-        if confirm.lower() not in ("y", "yes"):
-            logger.info("Aborted by user.")
-            return
+    log.log(f"Estimated ~{total_est} SerpAPI calls ({n_seeds} seeds)")
 
     # Step 1: Collect Google Trends data
-    logger.info("Step 1/6: Collecting Google Trends data...")
+    log.log("Phase 1: Collecting Google Trends data...")
     trend_data = collect_trends(market_config)
+
+    n_rising = len(trend_data.all_rising_queries)
+    n_top = len(trend_data.all_top_queries)
+    log.log(f"Google Trends: found {n_rising} rising queries, {n_top} top queries")
 
     # Step 2: Collect Instagram data (optional)
     instagram_data = None
     if not skip_instagram:
-        logger.info("Step 2/6: Collecting Instagram data...")
+        log.log("Phase 2: Collecting Instagram data...")
         all_hashtags = market_config.instagram_hashtags.get("generic", [])
         instagram_data = collect_instagram_data(all_hashtags)
     else:
-        logger.info("Step 2/6: Skipping Instagram (--skip-instagram)")
+        log.log("Phase 2: Skipping Instagram")
 
-    # Step 3: Classify destinations from BOTH rising and top queries
-    logger.info("Step 3/6: Classifying destinations with Claude...")
+    # Step 3: Classify destinations
+    all_queries_list = trend_data.all_rising_queries + trend_data.all_top_queries
+    total_to_classify = len(all_queries_list)
+    log.log(f"Claude: classifying {total_to_classify} queries...")
     claude_client = get_claude_client()
 
-    # Track which sources each destination came from
-    # dest_data: {norm_name: {info, rising_value, top_value, query, source}}
     seen_destinations: dict[str, dict] = {}
+    classified_count = 0
+    skipped_count = 0
 
-    # Process rising queries
     for rq in trend_data.all_rising_queries:
+        classified_count += 1
+        if classified_count % 5 == 0 or classified_count == 1:
+            log.log(f"Claude: classified {classified_count}/{total_to_classify} queries...")
         try:
-            info = classify_destination(rq.query, claude_client)
+            info = classify_destination(rq.query, claude_client, market=market_config)
             if info is None:
+                skipped_count += 1
                 continue
             norm_name = normalize_destination_name(info.destination_name)
             if norm_name not in seen_destinations:
@@ -114,19 +136,21 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
                     "source": "rising",
                 }
             else:
-                # Already seen — might already have top, upgrade to both
                 if seen_destinations[norm_name]["source"] == "top":
                     seen_destinations[norm_name]["source"] = "both"
                     seen_destinations[norm_name]["rising_value"] = rq.value
-                    seen_destinations[norm_name]["query"] = rq.query  # prefer rising query for volume check
+                    seen_destinations[norm_name]["query"] = rq.query
         except Exception as e:
-            logger.warning(f"Failed to classify rising '{rq.query}': {e}")
+            log.log(f"\u26a0\ufe0f Failed to classify rising '{rq.query}': {e}")
 
-    # Process top queries
     for tq in trend_data.all_top_queries:
+        classified_count += 1
+        if classified_count % 5 == 0:
+            log.log(f"Claude: classified {classified_count}/{total_to_classify} queries...")
         try:
-            info = classify_destination(tq.query, claude_client)
+            info = classify_destination(tq.query, claude_client, market=market_config)
             if info is None:
+                skipped_count += 1
                 continue
             norm_name = normalize_destination_name(info.destination_name)
             if norm_name not in seen_destinations:
@@ -143,25 +167,21 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
                 if existing["source"] == "rising":
                     existing["source"] = "both"
         except Exception as e:
-            logger.warning(f"Failed to classify top '{tq.query}': {e}")
+            log.log(f"\u26a0\ufe0f Failed to classify top '{tq.query}': {e}")
 
-    src_counts = {"rising": 0, "top": 0, "both": 0}
-    for d in seen_destinations.values():
-        src_counts[d["source"]] += 1
-    logger.info(
-        f"Classified {len(seen_destinations)} unique destinations: "
-        f"{src_counts['rising']} rising-only, {src_counts['top']} top-only, {src_counts['both']} both"
-    )
+    log.log(f"Claude: {len(seen_destinations)} destinations identified, {skipped_count} skipped (not destinations)")
 
     # Step 3b: Volume filter
-    logger.info("Step 3b/6: Checking search volume for classified destinations...")
+    dest_names = list(seen_destinations.keys())
+    log.log(f"Volume filter: checking {len(dest_names)} destinations...")
     geo = market_config.google_trends_geo
     filtered_destinations: dict[str, dict] = {}
     excluded_zero = 0
     flagged_low = 0
     flagged_insufficient = 0
 
-    for norm_name, dest_data in seen_destinations.items():
+    for vol_idx, (norm_name, dest_data) in enumerate(seen_destinations.items(), 1):
+        log.log(f"Volume filter: checking \"{dest_data['query']}\" ({vol_idx}/{len(dest_names)})")
         volume = check_search_volume(dest_data["query"], geo)
 
         if volume.status == VolumeStatus.ZERO:
@@ -177,23 +197,22 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         elif volume.status == VolumeStatus.INSUFFICIENT_DATA:
             flagged_insufficient += 1
 
-    logger.info(
-        f"Volume filter: {len(filtered_destinations)} kept, "
-        f"{excluded_zero} excluded (zero volume), "
-        f"{flagged_low} flagged as low_volume, "
-        f"{flagged_insufficient} flagged as insufficient_data"
-    )
+    log.log(f"Volume filter: {len(filtered_destinations)} passed, {excluded_zero} filtered out (zero volume)")
 
     # Step 4: Score and rank
-    logger.info("Step 4/6: Scoring and ranking destinations...")
+    log.log("Phase 2: Content gap analysis...")
     destinations: list[Destination] = []
     all_search_results: dict[str, list[dict]] = {}
+    dest_list = list(filtered_destinations.items())
 
-    for norm_name, dest_data in filtered_destinations.items():
+    for idx, (norm_name, dest_data) in enumerate(dest_list, 1):
         info = dest_data["info"]
         volume = dest_data["volume_check"]
         timeline = dest_data["timeline"]
         source = dest_data["source"]
+        local_name = info.destination_name_local
+
+        log.log(f"Google Search: analyzing \"{local_name}\" ({idx}/{len(dest_list)})")
 
         # Google Trends score
         gt_score = calculate_google_trends_score(timeline) if timeline else 50.0
@@ -205,7 +224,7 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         ig_hashtag = ""
         if instagram_data:
             for metrics in instagram_data.hashtag_metrics:
-                if info.destination_name_cs.lower() in metrics.hashtag.lower():
+                if local_name.lower() in metrics.hashtag.lower():
                     ig_score = calculate_instagram_score(metrics.velocity_change_pct)
                     ig_velocity_pct = metrics.velocity_change_pct
                     ig_hashtag = metrics.hashtag
@@ -215,19 +234,17 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         trend_score_raw = calculate_trend_score(gt_score, ig_score, has_cross_platform)
         trend_score = trend_score_raw
 
-        # --- Filter 1: Volume assessment ---
+        # Volume assessment
         if volume.status == VolumeStatus.INSUFFICIENT_DATA:
             volume_assessment = "insufficient_data"
             trend_score = round(trend_score * 0.30, 1)
-            logger.info(f"Volume: insufficient_data for '{info.destination_name_cs}': {trend_score_raw} → {trend_score}")
         elif volume.status == VolumeStatus.LOW_VOLUME:
             volume_assessment = "low_volume"
             trend_score = round(trend_score * 0.50, 1)
-            logger.info(f"Volume: low_volume for '{info.destination_name_cs}': {trend_score_raw} → {trend_score}")
         else:
             volume_assessment = "sufficient"
 
-        # --- Filter 2: Cross-platform validation ---
+        # Cross-platform validation
         if ig_velocity_pct is not None and ig_velocity_pct > 30:
             cross_platform_status = "confirmed"
             trend_score = round(min(trend_score + 10, 100), 1)
@@ -239,7 +256,7 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         trend_tl = build_trend_timeline(timeline)
 
         # Content gap
-        search_data = search_destination(info.destination_name_cs, market_config)
+        search_data = search_destination(local_name, market_config)
         all_search_results[info.destination_name_cs] = {
             "total_results": search_data.total_results,
             "queries": [
@@ -247,26 +264,25 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
                 for qr in search_data.per_query
             ],
         }
-        logger.info(f"Google Search for '{info.destination_name_cs}': {len(search_data.results)} organic, {search_data.total_results:,} total")
-        gap = score_content_gap(search_data.results, info.destination_name_cs, claude_client, total_results=search_data.total_results)
+
+        log.log(f"Content gap: scoring \"{local_name}\"...")
+        gap = score_content_gap(search_data.results, local_name, claude_client, total_results=search_data.total_results, market=market_config)
 
         search_volume_proxy = f"{gap.market_category} ({search_data.total_results:,})"
 
-        # --- Opportunity scoring ---
+        # Opportunity scoring
         trend_opportunity = calculate_opportunity(trend_score, gap.score)
         trend_opportunity_raw = calculate_opportunity(trend_score_raw, gap.score)
 
-        # Evergreen score (top query popularity × gap)
         top_value = dest_data.get("top_value")
         popularity_score = float(top_value) if top_value is not None else 0.0
         evergreen_opportunity = round(popularity_score * gap.score / 100, 1)
 
-        # Final opportunity based on source
         opportunity = calculate_final_opportunity(source, trend_opportunity, evergreen_opportunity)
-
         gap_detail = build_content_gap_detail(search_data.results, gap)
 
         # Verdict
+        log.log(f"Verdict: generating for \"{local_name}\" ({idx}/{len(dest_list)})")
         verdict = ""
         try:
             rv_display = dest_data.get("rising_value")
@@ -282,16 +298,15 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
                 },
                 {"gap_score": gap.score, "assessment": gap.assessment, "types_missing": gap.content_types_missing, "market_category": gap.market_category},
                 claude_client,
+                market=market_config,
             )
         except Exception as e:
             logger.warning(f"Failed to generate verdict for {info.destination_name_cs}: {e}")
 
         if not verdict:
             verdict = (
-                f"{info.destination_name_cs} představuje zajímavou příležitost "
-                f"s Opportunity Score {opportunity}. "
-                f"Trend Score {trend_score}/100 a Content Gap Score {gap.score}/100 "
-                f"naznačují prostor pro tvorbu kvalitního českého obsahu."
+                f"{info.destination_name_cs}: Opportunity Score {opportunity}, "
+                f"Trend Score {trend_score}/100, Content Gap Score {gap.score}/100."
             )
 
         # Format rising value for display
@@ -299,10 +314,11 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         if rv is not None:
             rising_display = str(rv) if isinstance(rv, str) and not str(rv).isdigit() else f"+{rv} %"
         else:
-            rising_display = "—"
+            rising_display = "\u2014"
 
         destinations.append(Destination(
             name=info.destination_name,
+            name_local=info.destination_name_local,
             name_cs=info.destination_name_cs,
             country=info.country,
             region=info.region,
@@ -334,16 +350,16 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
         ))
 
     ranked = rank_destinations(destinations)
-    logger.info(f"Found {len(ranked)} destinations")
+    log.log(f"Scoring complete: {len(ranked)} destinations ranked")
 
     if dry_run:
-        logger.info("Dry run — skipping report generation")
+        log.log("Dry run \u2014 skipping report generation")
         for i, d in enumerate(ranked[:10], 1):
-            logger.info(f"  {i}. {d.name_cs} ({d.country}) — {d.opportunity_type}: {d.opportunity_score}")
-        return
+            log.log(f"  {i}. {d.name_cs} ({d.country}) \u2014 {d.opportunity_type}: {d.opportunity_score}")
+        return None
 
-    # Step 5: Generate report
-    logger.info("Step 5/6: Generating report...")
+    # Generate report
+    log.log("Phase 3: Generating report...")
     raw_data = {
         "google-trends": [asdict(r) for r in trend_data.results],
         "search-results": all_search_results,
@@ -351,8 +367,34 @@ def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes:
     if instagram_data:
         raw_data["instagram"] = [asdict(m) for m in instagram_data.hashtag_metrics]
 
-    report_dir = generate_report(ranked, market_config.code, week, raw_data)
-    logger.info(f"Done! Report at: {report_dir}")
+    report_dir = generate_report(ranked, market_config.code, week, raw_data, timestamp=timestamp)
+    log.done(str(report_dir))
+    return str(report_dir)
+
+
+@click.command()
+@click.option("--market", required=True, help="Market code (e.g. cz)")
+@click.option("--week", default=None, help="Week identifier (e.g. 2026-W12). Defaults to current week.")
+@click.option("--dry-run", is_flag=True, help="Only collect data, don't generate report.")
+@click.option("--skip-instagram", is_flag=True, help="Skip Instagram data collection.")
+@click.option("--yes", "-y", is_flag=True, help="Skip API call confirmation prompt.")
+def cli(market: str, week: str | None, dry_run: bool, skip_instagram: bool, yes: bool) -> None:
+    """Travel Trend \u00d7 Content Gap Detector \u2014 CLI entry point."""
+    if not yes:
+        mc = load_market_config(market)
+        n_seeds = len(mc.all_seed_queries)
+        total_est = n_seeds * 2 + n_seeds * 3 + min(n_seeds * 3, 30) * len(mc.google_search_templates)
+        confirm = click.prompt(f"Estimated ~{total_est} SerpAPI calls. Pokra\u010dovat? (y/n)", default="y")
+        if confirm.lower() not in ("y", "yes"):
+            logger.info("Aborted by user.")
+            return
+
+    run_pipeline(
+        market=market,
+        week=week,
+        dry_run=dry_run,
+        skip_instagram=skip_instagram,
+    )
 
 
 if __name__ == "__main__":

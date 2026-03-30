@@ -1,0 +1,36 @@
+market:
+  code: "SK"
+  language: "sk"
+  country_name: "Slovensko"
+  google_trends_geo: "SK"
+  timezone: "Europe/Bratislava"
+
+seed_queries:
+  general:
+    - "dovolenka"
+
+instagram_hashtags:
+  generic:
+    - "dovolenka"
+  destination_template: "{destination_sk}"
+
+google_search_templates:
+  - "{destination} dovolenka sprievodca"
+  - "{destination} turistika blog"
+  - "{destination} cestopis"
+  - "{destination} tipy na výlet"
+
+scoring:
+  trend_weights:
+    google_trends: 0.60
+    instagram_velocity: 0.30
+    twitter_velocity: 0.00
+    cross_platform_bonus: 0.10
+  content_gap_weights:
+    search_quality: 0.40
+    freshness: 0.30
+    language_quality: 0.20
+    social_coverage: 0.10
+  time_windows:
+    short_term_weeks: 4
+    medium_term_months: 12
